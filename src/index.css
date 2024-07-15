@@ -8,6 +8,20 @@
   --pink: #ff0081;
 }
 
+@font-face {
+  font-family: 'ms1';
+  src: url('/public/fonts/ms-sans-serif-1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ms2';
+  src: url('/public/fonts/ms-sans-serif-4.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,7 +29,7 @@
 }
 
 body {
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: 'ms1', 'MS Sans Serif', sans-serif;
   background-color: var(--teal);
 }
 
@@ -42,13 +56,17 @@ h2 {
 }
 
 button {
-  background-image: linear-gradient(45deg,var(--darkgray) 0%, var(--lightgray) 100%);
-  border: 1px solid var(--darkgray);
-  color: var(--white);
+  background-color: var(--darkgray);
+  border-top: 2px solid var(--white);
+  border-left: 2px solid var(--white);
+  border-right: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
+  color: var(--black);
+  font-weight: bold;
   padding: .7rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 0px;
   cursor: pointer;
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: 'ms1', 'MS Sans Serif', sans-serif;
 }
 
 @media screen and (max-width: 940px) {

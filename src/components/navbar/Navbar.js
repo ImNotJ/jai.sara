@@ -1,37 +1,30 @@
-import React, { useState } from 'react'
-import { BiSearch } from 'react-icons/bi'
-import { BsPerson } from 'react-icons/bs'
-import { HiOutlineMenuAlt4 } from 'react-icons/hi'
+import React, { useState } from 'react';
+// import { BiSearch } from 'react-icons/bi';
+// import { BsPerson } from 'react-icons/bs';
+// import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+// import { AiOutlineClose } from 'react-icons/ai';
+import { FaFacebook, FaInstagram, FaPinterest, FaTwitter, FaYoutube } from 'react-icons/fa';
 
-import { AiOutlineClose } from 'react-icons/ai'
-import { FaFacebook, FaInstagram, FaPinterest, FaTwitter, FaYoutube } from 'react-icons/fa'
-
-import './NavbarStyles.css'
+import './NavbarStyles.css';
 
 function Navbar() {
-    const [nav, setNav] = useState(false)
-    const handleNav = () => setNav(!nav)
+    const [nav, setNav] = useState(false);
+    const [active, setActive] = useState(false);
+
+    const handleNav = () => {
+        setNav(!nav);
+        setActive(!active);
+    };
 
     return (
-        <div className={nav ? 'navbar navbar-bg' : 'navbar'}>
-            <div className="logo">
-                <h2>BEACHES.</h2>
+        <div className="navbar">
+            <div className="start-button">
+                <button 
+                    className={active ? 'active' : ''} 
+                    onClick={handleNav}>
+                    Start
+                </button>
             </div>
-            <ul className="nav-menu">
-                <li>Home</li>
-                <li>Destinations</li>
-                <li>Travel</li>
-                <li>Book</li>
-                <li>Views</li>
-            </ul>
-            <div className="nav-icons">
-                <BiSearch className='icon' style={{ marginRight: '1rem' }} />
-                <BsPerson className='icon' />
-            </div>
-            <div className="hamburger" onClick={handleNav}>
-                <HiOutlineMenuAlt4 className='icon' />
-            </div>
-
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <ul className="mobile-nav">
                     <li>Home</li>
@@ -55,7 +48,7 @@ function Navbar() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
