@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
         node-version: '16'
 
@@ -25,9 +25,8 @@ jobs:
       run: npm run build
 
     - name: Deploy to GitHub Pages
-      if: success()
+      env:
+        GITHUB_TOKEN: ${{ secrets.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 }}
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         npm install -g gh-pages
-        gh-pages -d build
+        npm run deploy
