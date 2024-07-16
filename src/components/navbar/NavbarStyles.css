@@ -1,18 +1,18 @@
 .navbar {
     width: 100%;
-    height: 40px;
+    height: 60px;
     display: flex;
     align-items: center;
-    background-color: var(--darkgray);
-    border-top: 2px solid var(--white);
-    border-left: 2px solid var(--white);
-    border-right: 2px solid var(--black);
-    border-bottom: 2px solid var(--black);
+    background-color: var(--lightgray);
+    border-top: 5px solid var(--white);
+    border-left: 5px solid var(--white);
+    border-right: 5px solid var(--black);
+    border-bottom: 5px solid var(--black);
     position: absolute;
     bottom: 0;
     color: #fff;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
-    cursor: var(--cursor-arrow);
+    cursor: auto;
 }
 
 .start-button {
@@ -21,26 +21,62 @@
 
 .start-button button {
     padding: 5px 10px;
-    cursor: var(--cursor-pointer);
+    border-top: 3px solid var(--white);
+    border-left: 3px solid var(--white);
+    border-bottom: 3px solid var(--black);
+    border-right: 3px solid var(--black);
+    cursor: pointer;
     font-family: 'ms2', 'MS Sans Serif', sans-serif;
     letter-spacing: .05rem;
-    font-size: 14px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 3px;
+    background-color: var(--lightgray);
 }
 
 .start-button button.active,
 .start-button button:active {
+    border-top: 3px solid var(--black);
+    border-left: 3px solid var(--black);
+    border-bottom: 3px solid var(--white);
+    border-right: 3px solid var(--white);
+}
+
+.divider {
+    width: 8px;
+    height: 70%;
+    margin: 0 5px;
+    border-top: 3px solid var(--white);
+    border-left: 3px solid var(--white);
+    border-bottom: 3px solid var(--black);
+    border-right: 3px solid var(--black);
     background-color: var(--lightgray);
-    border-top: 2px solid var(--black);
-    border-left: 2px solid var(--black);
-    border-bottom: 2px solid var(--white);
-    border-right: 2px solid var(--white);
+}
+
+.social-icons {
+    display: flex;
+    margin-left: 2px; 
+}
+
+.icon {
+    font-size: 3.6rem;
+    color: var(--black);
+    margin-left: -8px;
+    margin-right: -2px;
+    margin-top: 4px;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .mobile-menu {
     display: none;
     flex-direction: column;
     position: absolute;
-    bottom: 40px;
+    bottom: 50px;
     left: 0;
     width: 200px;
     background-color: var(--lightgray);
@@ -48,7 +84,7 @@
     border-top: none;
     z-index: 10;
     color: var(--black);
-    cursor: var(--cursor-arrow);
+    cursor: pointer;
 }
 
 .mobile-menu.active {
@@ -63,8 +99,8 @@
 
 .mobile-nav li {
     padding: 10px;
-    border-bottom: 1px solid var(--darkgray);
-    cursor: var(--cursor-pointer);
+    border-bottom: 1px solid var(--lightgray);
+    cursor: pointer;
 }
 
 .mobile-nav li:hover {
@@ -82,21 +118,20 @@
 .menu-icons button {
     margin: 5px;
     width: 80%;
+    font-weight: bold;
+    letter-spacing: 0.1em;
 }
 
-.social-icons {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 10px 0;
-}
-
-.icon {
-    font-size: 1.2rem;
-    cursor: var(--cursor-pointer);
-}
-
-.icon:hover {
-    transform: scale(1.2);
-    transition: 0.3s;
+.clock {
+    font-family: 'ms2', 'MS Sans Serif', sans-serif;
+    font-size: 28px;
+    color: var(--black);
+    padding: 0 10px;
+    border-top: 3px solid var(--white);
+    border-left: 3px solid var(--white);
+    border-bottom: 3px solid var(--black);
+    border-right: 3px solid var(--black);
+    background-color: var(--lightgray);
+    margin-left: auto;
+    margin-right: 7px;
 }
