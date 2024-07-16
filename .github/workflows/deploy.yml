@@ -31,5 +31,5 @@ jobs:
         git config --global user.email "saravanan.jai@gmail.com"
         git config --global user.name "ImNotJ"
         npm install -g gh-pages
-        git remote set-url origin https://x-access-token:${{ secrets.JAISARA }}@github.com/${{ github.ImNotj/jaisara }}.git
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
         npm run deploy
