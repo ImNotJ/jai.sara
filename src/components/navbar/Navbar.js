@@ -42,19 +42,16 @@ function Navbar() {
             </div>
             <div className="divider"></div>
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
-                <ul className="mobile-nav">
-                    <li>Home</li>
-                    <li>Destinations</li>
-                    <li>Travel</li>
-                    <li>Book</li>
-                    <li>Views</li>
-                </ul>
-                <div className="mobile-menu-bottom">
-                    <div className="menu-icons">
-                        <button>Search</button>
-                        <button>Account</button>
-                    </div>
+                <div className="blue-bar">
+                    <span><strong>jaisara</strong>.org</span>
                 </div>
+                <ul className="mobile-nav">
+                    <li>About</li>
+                    <li>CS Projects</li>
+                    <li>Finance Projects</li>
+                    <li>Contact</li>
+                    <li>???</li>
+                </ul>
             </div>
             <div className="clock">
                 {time}
