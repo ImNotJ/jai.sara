@@ -78,7 +78,7 @@
     position: absolute;
     bottom: 50px;
     left: 0;
-    width: 250px;
+    width: 350px;
     background-color: var(--lightgray);
     border-top: 3px solid var(--white);
     border-left: 3px solid var(--white);
@@ -93,7 +93,7 @@
 }
 
 .blue-bar {
-    width: 40px;
+    width: 50px;
     background: linear-gradient(to bottom, #0000ff, var(--blue));
     display: flex;
     align-items: center;
@@ -102,7 +102,7 @@
     text-orientation: mixed;
     font-family: 'ms2', 'MS Sans Serif', sans-serif;
     color: var(--white);
-    font-size: 20px;
+    font-size: 28px;
     padding-top: 15px;
     padding-left: 2.5px;
     padding-right: 2.5px;
@@ -122,11 +122,21 @@
     padding: 10px;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .mobile-nav li:hover {
     background-color: var(--blue);
     color: var(--white);
+}
+
+.arrow-icon {
+    font-size: 1rem;
+    margin-right: -5px;
+    
+   
 }
 
 .mobile-menu-bottom {

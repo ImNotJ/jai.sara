@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { BiSearch } from 'react-icons/bi';
 // import { BsPerson } from 'react-icons/bs';
 import { LiaGithubSquare, LiaLinkedin } from 'react-icons/lia';
+import { MdPlayArrow } from "react-icons/md";
 
 import './NavbarStyles.css';
 
@@ -47,9 +48,9 @@ function Navbar() {
                 </div>
                 <ul className="mobile-nav">
                     <li>About</li>
-                    <li>CS Projects</li>
-                    <li>Finance Projects</li>
-                    <li>Contact</li>
+                    <li>CS Projects <MdPlayArrow className='arrow-icon'/></li>
+                    <li>Finance Projects <MdPlayArrow className='arrow-icon'/></li>
+                    <li>Contact <MdPlayArrow className='arrow-icon'/></li>
                     <li>???</li>
                 </ul>
             </div>
