@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jaisara/static/css/main.d164a29a.css",
+    "main.js": "/jaisara/static/js/main.b81f7cb9.js",
+    "static/media/ms-sans-serif-4.ttf": "/jaisara/static/media/ms-sans-serif-4.dce2735f7b4ee0ba6f68.ttf",
+    "static/media/ms-sans-serif-1.ttf": "/jaisara/static/media/ms-sans-serif-1.e5796f55670d68d37241.ttf",
+    "index.html": "/jaisara/index.html",
+    "main.d164a29a.css.map": "/jaisara/static/css/main.d164a29a.css.map",
+    "main.b81f7cb9.js.map": "/jaisara/static/js/main.b81f7cb9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d164a29a.css",
+    "static/js/main.b81f7cb9.js"
+  ]
+}
