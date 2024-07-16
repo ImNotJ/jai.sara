@@ -1,6 +1,6 @@
 {
-  "homepage": "https://ImNotJ.github.io/jaisara.org",
-  "name": "jaisara.org",
+  "homepage": "https://ImNotJ.github.io/jaisara",
+  "name": "jaisara",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
