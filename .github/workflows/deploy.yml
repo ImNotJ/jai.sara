@@ -29,6 +29,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       run: |
         git config --global user.email "saravanan.jai@gmail.com"
-        git config --global user.name "ImNotJ"
         npm install -g gh-pages
         npm run deploy
