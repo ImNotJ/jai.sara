@@ -13,6 +13,7 @@
     color: #fff;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
     cursor: auto;
+    z-index: 2000;
 }
 
 .start-button {
