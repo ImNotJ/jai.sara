@@ -71,11 +71,17 @@
     height: 74%; 
     color: var(--black);
     background-color: var(--white); 
-    padding: 10px;
-    font-family: 'ms2', 'MS Sans Serif', sans-serif;
+    padding: 5px;
+    font-family: 'ms1', 'MS Sans Serif', sans-serif;
+    font-weight:600;
     font-size: 18px;
     overflow-y: auto;
     z-index: 1003;
+}
+
+.special-font {
+    font-family: 'ms2', 'MS Sans Serif', sans-serif;
+    font-weight: bold;
 }
 
 /* Close button */

@@ -11,12 +11,12 @@ const NotepadModal = ({ show, onClose }) => {
         }
     }, [show]);
 
-    const handleClose = () => {
-        setShowModal(false);
-        setTimeout(() => {
-            onClose();
-        }, 500); // Duration of the fade-out animation
-    };
+    // const handleClose = () => {
+    //     setShowModal(false);
+    //     setTimeout(() => {
+    //         onClose();
+    //     }, 500); // Duration of the fade-out animation
+    // };
 
     // Return null if the modal should not be shown
     if (!show && !showModal) {
@@ -25,7 +25,7 @@ const NotepadModal = ({ show, onClose }) => {
 
     return (
         // Overlay for the modal
-        <div className="modal-overlay" onClick={handleClose}>
+        <div className="modal-overlay">
             {/* Modal content container */}
             <div className={`modal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Close button */}
@@ -40,7 +40,7 @@ const NotepadModal = ({ show, onClose }) => {
                         Student at North Carolina State University (NCSU) pursuing a dual degree <br></br>in Computer Science and Economics.
                         I have a proven track record of <br></br>leading small teams and delivering impactful software development projects <br></br>across various domains.
                         My experience spans AI development, data engineering, <br></br>and research internships where I have honed my skills in programming, <br></br>data analysis, and problem-solving.
-                        Passionate about learning new technologies <br></br>and continuously improving my technical expertise.<strong>|</strong>
+                        Passionate about learning new technologies <br></br>and continuously improving my technical expertise.<span className="special-font">|</span>
                     </p>
                 </div>
             </div>

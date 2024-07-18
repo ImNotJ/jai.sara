@@ -12,12 +12,12 @@ const PaintModal = ({ show, onClose }) => {
         }
     }, [show]);
 
-    const handleClose = () => {
-        setShowModal(false);
-        setTimeout(() => {
-            onClose();
-        }, 500); // Duration of the fade-out animation
-    };
+    // const handleClose = () => {
+    //     setShowModal(false);
+    //     setTimeout(() => {
+    //         onClose();
+    //     }, 500); // Duration of the fade-out animation
+    // };
     
     // Return null if the modal should not be shown
     if (!show && !showModal) {
@@ -26,7 +26,7 @@ const PaintModal = ({ show, onClose }) => {
 
     return (
         // Overlay for the modal
-        <div className="pmodal-overlay" onClick={handleClose}>
+        <div className="pmodal-overlay">
             {/* Modal content container */}
             <div className={`pmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Close button */}

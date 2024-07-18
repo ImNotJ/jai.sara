@@ -36,25 +36,25 @@ function Navbar() {
             });
             setAudioPlayed(true);
         }
-        setShowNotepadModal(false);
-        
-        
+
+
         setTimeout(() => {
-            setShowPaintModal(false);
-        }, 500);
+            setShowNotepadModal(false);
+            setTimeout(() => {
+                setShowPaintModal(false);
+            }, 500);
+        }, 300);
     };
 
     // Toggle about modal visibility
     const handleAboutClick = () => {
         setNav(!nav);
         setActive(!active);
-        
-
         setTimeout(() => {
             setShowPaintModal(true);
-        setTimeout(() => {
-            setShowNotepadModal(true);
-        }, 500);
+            setTimeout(() => {
+                setShowNotepadModal(true);
+            }, 500);
         }, 500);
     };
 
@@ -62,7 +62,7 @@ function Navbar() {
         setTimeout(() => {
             setShowPaintModal(false);
         }, 300);
-        
+
     };
 
     const handleCloseNotepadModal = () => {
@@ -105,7 +105,7 @@ function Navbar() {
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
-                    <span><strong>jaisara</strong>.org</span>
+                    <span><strong>jaisara</strong><txt style={{ fontfamily: 'ms1' }}>.org</txt></span>
                 </div>
                 <ul className="mobile-nav">
                     <li onClick={handleAboutClick}>
