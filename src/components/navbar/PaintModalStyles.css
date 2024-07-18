@@ -1,3 +1,4 @@
+/* Overlay for the modal, fixed position to cover the screen */
 .pmodal-overlay {
     position: fixed;
     top: 0px;
@@ -7,9 +8,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
+/* Container for the modal content, centered inside the overlay */
 .pmodal-content {
     position: relative;
     display: flex;
@@ -17,12 +18,14 @@
     justify-content: center;
 }
 
+/* Styles for the paint image inside the modal */
 .pnotepad-image {
     width: 1200px; 
     height: auto;
     z-index: 1001;
 }
 
+/* Styles for the about text inside the modal */
 .pabout-text {
     position: absolute;
     top: 80px; 

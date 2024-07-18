@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { BiSearch } from 'react-icons/bi';
-// import { BsPerson } from 'react-icons/bs';
+// Importing necessary icons from 'react-icons' library
 import { LiaGithubSquare, LiaLinkedin } from 'react-icons/lia';
 import { MdPlayArrow } from "react-icons/md";
+
+// Importing modal components and assets
 import NotepadModal from './NotepadModal';
 import PaintModal from './PaintModal';
 import aboutI from './assets/notepad icon.png';
@@ -16,13 +17,15 @@ import startup from './assets/windows98-startup.mp3.mp3';
 import './NavbarStyles.css';
 
 function Navbar() {
-    const [nav, setNav] = useState(false);
-    const [active, setActive] = useState(false);
-    const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const [showModals, setShowModals] = useState(false);
-    const [audioPlayed, setAudioPlayed] = useState(false);
-    const audioRef = useRef(null);
+    // State hooks for various UI elements
+    const [nav, setNav] = useState(false); // Manages the navigation menu visibility
+    const [active, setActive] = useState(false); // Manages the active state of the start button
+    const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })); // Manages the current time display
+    const [showModals, setShowModals] = useState(false); // Manages the visibility of the modals
+    const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
+    const audioRef = useRef(null); // Reference to the audio element
 
+    // Toggle navigation menu and play audio if it hasn't been played yet
     const handleNav = () => {
         setNav(!nav);
         setActive(!active);
@@ -34,26 +37,27 @@ function Navbar() {
         }
     };
 
+    // Toggle about modal visibility
     const handleAboutClick = () => {
         setNav(!nav);
         setActive(!active);
         setShowModals(!showModals);
-        
     };
 
+    // Update time every second
     useEffect(() => {
-        
         const interval = setInterval(() => {
             setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         }, 1000);
         return () => clearInterval(interval);
     }, []);
-    
 
     return (
         <div className="navbar">
+            {/* Audio element for startup sound */}
             <audio ref={audioRef} src={startup} preload="auto" />
             <div className="start-button">
+                {/* Start button */}
                 <button
                     className={active ? 'active' : ''}
                     onClick={handleNav}>
@@ -61,31 +65,52 @@ function Navbar() {
                 </button>
             </div>
             <div className="divider"></div>
+            {/* Social media icons */}
             <div className="social-icons">
                 <a href="https://github.com/ImNotJ" target="_blank" rel="noopener noreferrer">
-                    <LiaGithubSquare className='icon' style={{color: 'var(--pink)'}}/>
+                    <LiaGithubSquare className='icon' style={{ color: 'var(--pink)' }} />
                 </a>
                 <a href="https://www.linkedin.com/in/jaisaravanan/" target="_blank" rel="noopener noreferrer">
-                    <LiaLinkedin className='icon' style={{color: 'var(--blue)'}}/>
+                    <LiaLinkedin className='icon' style={{ color: 'var(--blue)' }} />
                 </a>
             </div>
             <div className="divider"></div>
+            {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
                     <span><strong>jaisara</strong>.org</span>
                 </div>
                 <ul className="mobile-nav">
-                    <li onClick={handleAboutClick}><img src={aboutI} alt="aboutI" style={{scale: '10%', margin: '-500px', position: 'absolute', left:'293px'}}/><span><u>A</u>bout</span></li>
-                    <li><img src={csI} alt="csI" style={{scale: '10%', margin: '-500px', position: 'absolute', left:'293px'}}/><span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon'/></li>
-                    <li><img src={finI} alt="finI" style={{scale: '10%', margin: '-500px', position: 'absolute', left:'293px'}}/><span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon'/></li>
-                    <li><img src={certI} alt="certI" style={{scale: '10%', margin: '-500px', position: 'absolute', left:'293px'}}/><span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon'/></li>
-                    <li><img src={contactI} alt="contactI" style={{scale: '10%', margin: '-500px', position: 'absolute', left:'293px'}}/><span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon'/></li>
-                    <li><img src={idkI} alt="idkI" style={{scale: '10%', margin: '-500px', position: 'absolute', left:'293px'}}/>???</li>
+                    <li onClick={handleAboutClick}>
+                        <img src={aboutI} alt="About Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <span><u>A</u>bout</span>
+                    </li>
+                    <li>
+                        <img src={csI} alt="CS Projects Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
+                    </li>
+                    <li>
+                        <img src={finI} alt="Finance Projects Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon' />
+                    </li>
+                    <li>
+                        <img src={certI} alt="Certifications Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon' />
+                    </li>
+                    <li>
+                        <img src={contactI} alt="Contact Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon' />
+                    </li>
+                    <li>
+                        <img src={idkI} alt="Unknown Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        ???</li>
                 </ul>
             </div>
             <div className="clock">
+                {/* Clock display */}
                 {time}
             </div>
+            {/* Modals */}
             <NotepadModal show={showModals} onClose={handleAboutClick} />
             <PaintModal show={showModals} onClose={handleAboutClick} />
         </div>
