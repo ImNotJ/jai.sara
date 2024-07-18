@@ -102,6 +102,17 @@ function Navbar() {
                 </a>
             </div>
             <div className="divider"></div>
+            {/* Notepad Modal button */}
+            {showNotepadModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseNotepadModal}>
+                        <img src={aboutI} alt="Notepad Icon" className="notepad-icon" />
+                        Untitled - Notepad
+                    </button>
+                </div>
+            )}
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
@@ -140,6 +151,7 @@ function Navbar() {
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
+
         </div>
     );
 }
