@@ -1,6 +1,6 @@
 import React from 'react';
 import './NotepadModal.css';
-import notepadImage from './notepad.png'; 
+import notepadImage from './assets/notepad.png'; 
 
 const NotepadModal = ({ show, onClose }) => {
     if (!show) {

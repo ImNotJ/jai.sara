@@ -1,7 +1,7 @@
 import React from 'react';
 import './PaintModalStyles.css';
-import paintImage from './paint.png';
-import headshot from './headshot.jpg';
+import paintImage from './assets/paint.png';
+import headshot from './assets/headshot.jpg';
 
 const PaintModal = ({ show, onClose }) => {
     if (!show) {
