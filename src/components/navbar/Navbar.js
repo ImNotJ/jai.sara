@@ -36,25 +36,39 @@ function Navbar() {
             });
             setAudioPlayed(true);
         }
+        setShowNotepadModal(false);
+        
+        
+        setTimeout(() => {
+            setShowPaintModal(false);
+        }, 500);
     };
 
     // Toggle about modal visibility
     const handleAboutClick = () => {
         setNav(!nav);
         setActive(!active);
-        setShowPaintModal(true);
+        
+
+        setTimeout(() => {
+            setShowPaintModal(true);
         setTimeout(() => {
             setShowNotepadModal(true);
+        }, 500);
         }, 500);
     };
 
     const handleClosePaintModal = () => {
-        setShowPaintModal(false);
+        setTimeout(() => {
+            setShowPaintModal(false);
+        }, 300);
         
     };
 
     const handleCloseNotepadModal = () => {
-        setShowNotepadModal(false);
+        setTimeout(() => {
+            setShowNotepadModal(false);
+        }, 300);
     };
 
     // Update time every second
