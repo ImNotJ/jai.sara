@@ -28,13 +28,14 @@
 .modal-overlay {
     position: fixed;
     top: 200px;
-    left: 400px;
+    left: 40rem;
     right: 0px;
     bottom: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    size: 1rem;
 }
 
 /* Container for the modal content, centered inside the overlay */

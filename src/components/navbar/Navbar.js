@@ -109,7 +109,7 @@ function Navbar() {
                 <div className="amodal-button">
                     <button
                         className={active ? 'active' : ''}
-                        onClick={handleCloseNotepadModal}>
+                        onClick={handleClosePaintModal}>
                         <img src={paintI} alt="Paint Icon" className="note-icon" />
                         untitled - Paint
                     </button>
