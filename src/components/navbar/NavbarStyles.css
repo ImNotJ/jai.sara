@@ -84,7 +84,7 @@
 /* Container for the notepad modal button */
 .amodal-button {
     margin-left: 5px;
-    max-width:fit-content;
+    margin-right: -360px;
 }
 
 /* Styles for the notepad modal button */
@@ -106,15 +106,26 @@
     
 }
 
-.amodal-button button img.notepad-icon {
+
+.amodal-button button img.note-icon {
     display: flex;
     width: 20%;
     height: 20%;
-    margin-top: -18px;
+    margin-top: -16px;
     margin-bottom: -20px;
     margin-left: -23px;
     margin-right: -13px;
     
+}
+
+/* Styles for the active or clicked state of the start button */
+.amodal-button button.active,
+.amodal-button button:active {
+    border-top: 3px solid var(--black);
+    border-left: 3px solid var(--black);
+    border-bottom: 3px solid var(--white);
+    border-right: 3px solid var(--white);
+    font-weight: bold;
 }
 
 /* Styles for the mobile navigation menu */

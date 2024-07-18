@@ -12,6 +12,7 @@ import finI from './assets/fin icon.png';
 import certI from './assets/certi icon.png';
 import contactI from './assets/contact icon.png';
 import idkI from './assets/idk icon.png';
+import paintI from './assets/paint icon.png';
 import startup from './assets/windows98-startup.mp3.mp3';
 
 import './NavbarStyles.css';
@@ -102,17 +103,32 @@ function Navbar() {
                 </a>
             </div>
             <div className="divider"></div>
+            
+            {/* Paint Modal button */}
+            {showPaintModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseNotepadModal}>
+                        <img src={paintI} alt="Paint Icon" className="note-icon" />
+                        untitled - Paint
+                    </button>
+                </div>
+            )}
+            
             {/* Notepad Modal button */}
             {showNotepadModal && (
                 <div className="amodal-button">
                     <button
                         className={active ? 'active' : ''}
                         onClick={handleCloseNotepadModal}>
-                        <img src={aboutI} alt="Notepad Icon" className="notepad-icon" />
-                        Untitled - Notepad
+                        <img src={aboutI} alt="Notepad Icon" className="note-icon" />
+                        General - Notepad
                     </button>
                 </div>
             )}
+
+            
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
