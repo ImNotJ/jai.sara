@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './NotepadModal.css';
 import notepadImage from './assets/notepad.png'; 
 
 const NotepadModal = ({ show, onClose }) => {
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        if (show) {
+            setShowModal(true);
+        }
+    }, [show]);
+
+    const handleClose = () => {
+        setShowModal(false);
+        setTimeout(() => {
+            onClose();
+        }, 500); // Duration of the fade-out animation
+    };
+    
     // Return null if the modal should not be shown
-    if (!show) {
+    if (!show && !showModal) {
         return null;
     }
 
     return (
         // Overlay for the modal
-        <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-overlay" onClick={handleClose}>
             {/* Modal content container */}
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className={`modal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Notepad image */}
                 <img src={notepadImage} alt="Notepad" className="notepad-image" />
                 {/* About text container */}

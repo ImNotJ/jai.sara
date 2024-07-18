@@ -21,7 +21,8 @@ function Navbar() {
     const [nav, setNav] = useState(false); // Manages the navigation menu visibility
     const [active, setActive] = useState(false); // Manages the active state of the start button
     const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })); // Manages the current time display
-    const [showModals, setShowModals] = useState(false); // Manages the visibility of the modals
+    const [showPaintModal, setShowPaintModal] = useState(false);
+    const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const audioRef = useRef(null); // Reference to the audio element
 
@@ -41,7 +42,19 @@ function Navbar() {
     const handleAboutClick = () => {
         setNav(!nav);
         setActive(!active);
-        setShowModals(!showModals);
+        setShowPaintModal(true);
+        setTimeout(() => {
+            setShowNotepadModal(true);
+        }, 500);
+    };
+
+    const handleClosePaintModal = () => {
+        setShowPaintModal(false);
+        
+    };
+
+    const handleCloseNotepadModal = () => {
+        setShowNotepadModal(false);
     };
 
     // Update time every second
@@ -111,8 +124,8 @@ function Navbar() {
                 {time}
             </div>
             {/* Modals */}
-            <NotepadModal show={showModals} onClose={handleAboutClick} />
-            <PaintModal show={showModals} onClose={handleAboutClick} />
+            <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
+            <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
         </div>
     );
 }

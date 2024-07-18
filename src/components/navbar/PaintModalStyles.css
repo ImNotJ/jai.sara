@@ -1,3 +1,29 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.93);
+        filter: hue-rotate(180deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.93);
+        filter: hue-rotate(180deg);
+    }
+}
+
 /* Overlay for the modal, fixed position to cover the screen */
 .pmodal-overlay {
     position: fixed;
@@ -16,6 +42,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.pmodal-content.show {
+    animation-name: fadeIn;
+}
+
+.pmodal-content.hide {
+    animation-name: fadeOut;
 }
 
 /* Styles for the paint image inside the modal */

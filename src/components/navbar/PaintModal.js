@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './PaintModalStyles.css';
 import paintImage from './assets/paint.png';
 import headshot from './assets/headshot.jpg';
 
 const PaintModal = ({ show, onClose }) => {
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        if (show) {
+            setShowModal(true);
+        }
+    }, [show]);
+
+    const handleClose = () => {
+        setShowModal(false);
+        setTimeout(() => {
+            onClose();
+        }, 500); // Duration of the fade-out animation
+    };
+    
     // Return null if the modal should not be shown
-    if (!show) {
+    if (!show && !showModal) {
         return null;
     }
 
     return (
         // Overlay for the modal
-        <div className="pmodal-overlay" onClick={onClose}>
+        <div className="pmodal-overlay" onClick={handleClose}>
             {/* Modal content container */}
-            <div className="pmodal-content" onClick={e => e.stopPropagation()}>
+            <div className={`pmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Paint image */}
                 <img src={paintImage} alt="Paint" className="pnotepad-image" />
                 {/* About text container with headshot */}
