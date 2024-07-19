@@ -6,6 +6,7 @@ import { MdPlayArrow } from "react-icons/md";
 // Importing modal components and assets
 import NotepadModal from './NotepadModal';
 import PaintModal from './PaintModal';
+import Submenu from './Submenu';
 import aboutI from './assets/notepad icon.png';
 import csI from './assets/cs icon.png';
 import finI from './assets/fin icon.png';
@@ -25,7 +26,14 @@ function Navbar() {
     const [showPaintModal, setShowPaintModal] = useState(false);
     const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
+    const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
+    const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
+
     const audioRef = useRef(null); // Reference to the audio element
+    const csRef = useRef(null);
+    const finRef = useRef(null);
+    const certRef = useRef(null);
+    const contactRef = useRef(null);
 
     // Toggle navigation menu and play audio if it hasn't been played yet
     const handleNav = () => {
@@ -70,6 +78,14 @@ function Navbar() {
         setTimeout(() => {
             setShowNotepadModal(false);
         }, 300);
+    };
+
+    const handleSubmenuClick = (items, ref) => {
+        if (ref.current) {
+            const rect = ref.current.getBoundingClientRect();
+            setSubmenuPosition({ top: rect.top, left: rect.left });
+        }
+        setSubmenuItems(items);
     };
 
     // Update time every second
@@ -139,19 +155,19 @@ function Navbar() {
                         <img src={aboutI} alt="About Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
                         <span><u>A</u>bout</span>
                     </li>
-                    <li>
+                    <li ref={csRef} onClick={() => handleSubmenuClick(['Project 1', 'Project 2', 'Project 3'], csRef)}>
                         <img src={csI} alt="CS Projects Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
                         <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li>
+                    <li ref={finRef} onClick={() => handleSubmenuClick(['Project 1', 'Project 2', 'Project 3'], finRef)}>
                         <img src={finI} alt="Finance Projects Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
                         <span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li>
+                    <li ref={certRef} onClick={() => handleSubmenuClick(['AWS Cloud Practitioner'], certRef)}>
                         <img src={certI} alt="Certifications Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
                         <span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li>
+                    <li ref={contactRef} onClick={() => handleSubmenuClick(['Github', 'Linkedin'], contactRef)}>
                         <img src={contactI} alt="Contact Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
                         <span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon' />
                     </li>
@@ -167,7 +183,9 @@ function Navbar() {
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
-
+            {submenuItems.length > 0 && (
+                <Submenu items={submenuItems} position={submenuPosition} onClose={() => setSubmenuItems([])} />
+            )}
         </div>
     );
 }
