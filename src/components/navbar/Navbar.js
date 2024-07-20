@@ -22,9 +22,9 @@ import cssaI from './assets/icon13.png';
 import cs3 from './assets/icon2.png';
 import cs2 from './assets/icon4.png';
 import cs1 from './assets/icon8.png';
-
-
-
+import fin3 from './assets/icon12.png';
+import fin2 from './assets/icon11.png';
+import fin1 from './assets/icon6.png';
 
 import startup from './assets/windows98-startup.mp3.mp3';
 
@@ -40,6 +40,7 @@ function Navbar() {
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
+    // const [showSubmenu, setShowSubmenu] = useState(false);
 
     const audioRef = useRef(null); // Reference to the audio element
     const csRef = useRef(null);
@@ -51,6 +52,7 @@ function Navbar() {
     const handleNav = () => {
         setNav(!nav);
         setActive(!active);
+        setSubmenuItems([]);
         if (!audioPlayed && audioRef.current) {
             audioRef.current.play().catch(error => {
                 console.log('Audio playback failed:', error);
@@ -77,6 +79,7 @@ function Navbar() {
                 setShowNotepadModal(true);
             }, 500);
         }, 500);
+        setSubmenuItems([]);
     };
 
     const handleClosePaintModal = () => {
@@ -98,7 +101,15 @@ function Navbar() {
             setSubmenuPosition({ top: rect.top, left: rect.left });
         }
         setSubmenuItems(items);
+        
     };
+
+    const handleCloseSubmenu = () => {
+        setSubmenuItems([]);
+        setNav(false);  
+        setActive(false);  
+    };
+    
 
     // Update time every second
     useEffect(() => {
@@ -175,9 +186,9 @@ function Navbar() {
                         <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
                     <li ref={finRef} onClick={() => handleSubmenuClick([
-                        { icon: ccpI, text: 'TBD' },
-                        { icon: ccpI, text: 'TBD' },
-                        { icon: ccpI, text: 'TBD' }], finRef)}>
+                        { icon: fin1, text: 'TBD' },
+                        { icon: fin2, text: 'TBD' },
+                        { icon: fin3, text: 'TBD' }], finRef)}>
                         <img src={finI} alt="Finance Projects Icon" className='menu-icon' />
                         <span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
@@ -190,7 +201,7 @@ function Navbar() {
                     </li>
                     <li ref={contactRef} onClick={() => handleSubmenuClick([
                         { icon: gitI, text: 'Github' },
-                        { icon: linkI, text: 'Linkedin' }], contactRef)}>
+                        { icon: linkI, text: 'Linkedin' }], contactRef, {handleNav})}>
                         <img src={contactI} alt="Contact Icon" className='menu-icon' />
                         <span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon' />
                     </li>
@@ -207,8 +218,10 @@ function Navbar() {
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
             {submenuItems.length > 0 && (
-                <Submenu items={submenuItems} position={submenuPosition} onClose={() => setSubmenuItems([])} />
+                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} />
+                
             )}
+
         </div>
     );
 }
