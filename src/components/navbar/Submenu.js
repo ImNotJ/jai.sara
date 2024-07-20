@@ -7,7 +7,8 @@ function Submenu({ items, position, onClose }) {
             <ul className="submenu-nav">
                 {items.map((item, index) => (
                     <li key={index} onClick={onClose}>
-                        {item}
+                        <img src={item.icon} alt={item.text} className="submenu-icon" />
+                        <span>{item.text}</span>
                     </li>
                 ))}
             </ul>

@@ -14,6 +14,18 @@ import certI from './assets/certi icon.png';
 import contactI from './assets/contact icon.png';
 import idkI from './assets/idk icon.png';
 import paintI from './assets/paint icon.png';
+import ccpI from './assets/icon7.png';
+import gitI from './assets/icon9.png';
+import linkI from './assets/icon3.png';
+import sapI from './assets/start icon.png';
+import cssaI from './assets/icon13.png';
+import cs3 from './assets/icon2.png';
+import cs2 from './assets/icon4.png';
+import cs1 from './assets/icon8.png';
+
+
+
+
 import startup from './assets/windows98-startup.mp3.mp3';
 
 import './NavbarStyles.css';
@@ -119,7 +131,7 @@ function Navbar() {
                 </a>
             </div>
             <div className="divider"></div>
-            
+
             {/* Paint Modal button */}
             {showPaintModal && (
                 <div className="amodal-button">
@@ -131,7 +143,7 @@ function Navbar() {
                     </button>
                 </div>
             )}
-            
+
             {/* Notepad Modal button */}
             {showNotepadModal && (
                 <div className="amodal-button">
@@ -144,7 +156,7 @@ function Navbar() {
                 </div>
             )}
 
-            
+
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
@@ -152,27 +164,38 @@ function Navbar() {
                 </div>
                 <ul className="mobile-nav">
                     <li onClick={handleAboutClick}>
-                        <img src={aboutI} alt="About Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <img src={aboutI} alt="About Icon" className='menu-icon' />
                         <span><u>A</u>bout</span>
                     </li>
-                    <li ref={csRef} onClick={() => handleSubmenuClick(['Project 1', 'Project 2', 'Project 3'], csRef)}>
-                        <img src={csI} alt="CS Projects Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                    <li ref={csRef} onClick={() => handleSubmenuClick([
+                        { icon: cs1, text: 'TBD' },
+                        { icon: cs2, text: 'TBD' },
+                        { icon: cs3, text: 'TBD' }], csRef)}>
+                        <img src={csI} alt="CS Projects Icon" className='menu-icon' />
                         <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={finRef} onClick={() => handleSubmenuClick(['Project 1', 'Project 2', 'Project 3'], finRef)}>
-                        <img src={finI} alt="Finance Projects Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                    <li ref={finRef} onClick={() => handleSubmenuClick([
+                        { icon: ccpI, text: 'TBD' },
+                        { icon: ccpI, text: 'TBD' },
+                        { icon: ccpI, text: 'TBD' }], finRef)}>
+                        <img src={finI} alt="Finance Projects Icon" className='menu-icon' />
                         <span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={certRef} onClick={() => handleSubmenuClick(['AWS Cloud Practitioner'], certRef)}>
-                        <img src={certI} alt="Certifications Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                    <li ref={certRef} onClick={() => handleSubmenuClick([
+                        { icon: ccpI, text: 'AWS Cloud Practitioner' },
+                        { icon: sapI, text: 'TBD' },
+                        { icon: cssaI, text: 'TBD' }], certRef)}>
+                        <img src={certI} alt="Certifications Icon" className='menu-icon' />
                         <span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={contactRef} onClick={() => handleSubmenuClick(['Github', 'Linkedin'], contactRef)}>
-                        <img src={contactI} alt="Contact Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                    <li ref={contactRef} onClick={() => handleSubmenuClick([
+                        { icon: gitI, text: 'Github' },
+                        { icon: linkI, text: 'Linkedin' }], contactRef)}>
+                        <img src={contactI} alt="Contact Icon" className='menu-icon' />
                         <span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon' />
                     </li>
                     <li>
-                        <img src={idkI} alt="Unknown Icon" style={{ scale: '10%', margin: '-500px', position: 'absolute', left: '293px' }} />
+                        <img src={idkI} alt="Unknown Icon" className='menu-icon' />
                         ???</li>
                 </ul>
             </div>

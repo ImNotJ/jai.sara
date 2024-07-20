@@ -183,7 +183,7 @@
 /* Styles for individual navigation items */
 .mobile-nav li {
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
-    padding: 10px;
+    padding: 15px;
     font-size: 20px;
     padding-left: 47px;
     cursor: pointer;
@@ -219,6 +219,13 @@
     width: 80%;
     font-weight: bold;
     letter-spacing: 0.1em;
+}
+
+.menu-icon {
+    scale: 10%;
+    margin: -500px;
+    position: absolute; 
+    left: 293px;
 }
 
 /* Styles for the clock display */
