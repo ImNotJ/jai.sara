@@ -42,6 +42,8 @@ function Navbar() {
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
     const [activeSubmenu, setActiveSubmenu] = useState(null); // Manages the currently active submenu
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940); // Manage mobile state
+    const [activeNavItem, setActiveNavItem] = useState(null); // Manage active nav item
+
 
 
     const audioRef = useRef(null); // Reference to the audio element
@@ -54,6 +56,7 @@ function Navbar() {
     const handleNav = () => {
         setNav(!nav);
         setActive(!active);
+        setActiveNavItem(null);
         setSubmenuItems([]);
         if (!audioPlayed && audioRef.current) {
             audioRef.current.play().catch(error => {
@@ -100,6 +103,7 @@ function Navbar() {
             // If the same submenu is clicked, close it
             setActiveSubmenu(null);
             setSubmenuItems([]);
+            setActiveNavItem(null);
         } else {
             // Otherwise, open the new submenu
             if (ref.current) {
@@ -108,22 +112,27 @@ function Navbar() {
             }
             setSubmenuItems(items);
             setActiveSubmenu(ref.current);
+            setActiveNavItem(ref.current);
         }
     };
 
     const handleCloseSubmenu = () => {
+        setActiveNavItem(null);
         setSubmenuItems([]);
         setNav(false);
         setActive(false);
+        
     };
 
     const handleUnknownClick = () => {
         window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener noreferrer');
+        setActiveNavItem(null);
     };
 
     // Redirect function for submenu items
     const handleRedirect = (url) => {
         window.open(url, '_blank', 'noopener noreferrer');
+        setActiveNavItem(null);
     };
 
     // Update time every second
@@ -200,32 +209,32 @@ function Navbar() {
                     <span><strong>jaisara</strong><txt style={{ fontFamily: 'ms1' }}>.org</txt></span>
                 </div>
                 <ul className="mobile-nav">
-                    <li onClick={handleAboutClick}>
+                    <li className={activeNavItem === 'about' ? 'active' : ''} onClick={handleAboutClick}>
                         <img src={aboutI} alt="About Icon" className='menu-icon' />
                         <span><u>A</u>bout</span>
                     </li>
-                    <li ref={csRef} onClick={() => handleSubmenuClick([
+                    <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
                         { icon: cs1, text: 'TBD' },
                         { icon: cs2, text: 'TBD' },
                         { icon: cs3, text: 'TBD' }], csRef)}>
                         <img src={csI} alt="CS Projects Icon" className='menu-icon' />
                         <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={finRef} onClick={() => handleSubmenuClick([
+                    <li ref={finRef} className={activeNavItem === finRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
                         { icon: fin1, text: 'TBD' },
                         { icon: fin2, text: 'TBD' },
                         { icon: fin3, text: 'TBD' }], finRef)}>
                         <img src={finI} alt="Finance Projects Icon" className='menu-icon' />
                         <span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={certRef} onClick={() => handleSubmenuClick([
+                    <li ref={certRef} className={activeNavItem === certRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
                         { icon: ccpI, text: 'AWS Cloud Practitioner' },
                         { icon: sapI, text: 'TBD' },
                         { icon: cssaI, text: 'TBD' }], certRef)}>
                         <img src={certI} alt="Certifications Icon" className='menu-icon' />
                         <span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={contactRef} onClick={() => handleSubmenuClick([
+                    <li ref={contactRef} className={activeNavItem === contactRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
                         { icon: gitI, text: 'Github', url: 'https://github.com/ImNotJ' },
                         { icon: linkI, text: 'Linkedin', url: 'https://www.linkedin.com/in/jaisaravanan/' }], contactRef)}>
                         <img src={contactI} alt="Contact Icon" className='menu-icon' />
