@@ -1,6 +1,6 @@
 .submenu {
     position: absolute;
-    
+
     width: 300px;
     background-color: var(--lightgray);
     border-top: 3px solid var(--white);
@@ -40,6 +40,3 @@
     position: absolute;
     left: 248px;
 }
-
-    
-

@@ -18,7 +18,7 @@ const PaintModal = ({ show, onClose }) => {
     //         onClose();
     //     }, 500); // Duration of the fade-out animation
     // };
-    
+
     // Return null if the modal should not be shown
     if (!show && !showModal) {
         return null;
@@ -31,13 +31,13 @@ const PaintModal = ({ show, onClose }) => {
             <div className={`pmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Close button */}
                 <button className="close-button" onClick={onClose}>
-                    
+
                 </button>
                 {/* Paint image */}
                 <img src={paintImage} alt="Paint" className="pnotepad-image" />
                 {/* About text container with headshot */}
                 <div className="pabout-text">
-                    <img src={headshot} alt="Headshot" style={{ scale: '50%', position: 'absolute', bottom: '120px', right: '570px',}} />
+                    <img src={headshot} alt="Headshot" style={{ scale: '50%', position: 'absolute', bottom: '120px', right: '570px', }} />
                 </div>
             </div>
         </div>

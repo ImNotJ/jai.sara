@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './SubmenuStyles.css';
 
-function Submenu({ items, position, onClose }) {
+function Submenu({ items, position, onClose, onItemClick }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940);
 
     // Update the state based on window resize
@@ -14,7 +14,7 @@ function Submenu({ items, position, onClose }) {
 
     const submenuStyles = isMobile
         ? { top: 370, left: 55, width: '300px' }
-        : { top: position.top-990, left: position.left+290, width: '300px' };
+        : { top: position.top - 990, left: position.left + 290, width: '300px' };
 
     const submenuNavStyles = {
         listStyle: 'none',
@@ -38,7 +38,7 @@ function Submenu({ items, position, onClose }) {
         scale: '10%',
         margin: '-500px',
         marginRight: '10px',
-        position:'absolute',
+        position: 'absolute',
         left: '248px',
     };
 
@@ -46,7 +46,7 @@ function Submenu({ items, position, onClose }) {
         <div className="submenu" style={submenuStyles}>
             <ul className="submenu-nav" style={submenuNavStyles}>
                 {items.map((item, index) => (
-                    <li key={index} onClick={onClose} style={submenuNavItemStyles}>
+                    <li key={index} onClick={() => item.url ? onItemClick(item.url) : onClose} style={submenuNavItemStyles}>
                         <img src={item.icon} alt={item.text} className="submenu-icon" style={submenuIconStyles} />
                         <span>{item.text}</span>
                     </li>

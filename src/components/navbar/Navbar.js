@@ -40,8 +40,8 @@ function Navbar() {
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
-    // const [showSubmenu, setShowSubmenu] = useState(false);
     const [activeSubmenu, setActiveSubmenu] = useState(null); // Manages the currently active submenu
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 940); // Manage mobile state
 
 
     const audioRef = useRef(null); // Reference to the audio element
@@ -61,7 +61,6 @@ function Navbar() {
             });
             setAudioPlayed(true);
         }
-
 
         setTimeout(() => {
             setShowNotepadModal(false);
@@ -88,7 +87,6 @@ function Navbar() {
         setTimeout(() => {
             setShowPaintModal(false);
         }, 300);
-
     };
 
     const handleCloseNotepadModal = () => {
@@ -98,9 +96,9 @@ function Navbar() {
     };
 
     const handleSubmenuClick = (items, ref) => {
-        if (activeSubmenu === true) {
+        if (activeSubmenu === ref.current) {
             // If the same submenu is clicked, close it
-            setActiveSubmenu(false);
+            setActiveSubmenu(null);
             setSubmenuItems([]);
         } else {
             // Otherwise, open the new submenu
@@ -109,16 +107,24 @@ function Navbar() {
                 setSubmenuPosition({ top: rect.top, left: rect.left });
             }
             setSubmenuItems(items);
-            setActiveSubmenu(true);
+            setActiveSubmenu(ref.current);
         }
     };
 
     const handleCloseSubmenu = () => {
         setSubmenuItems([]);
-        setNav(false);  
-        setActive(false);  
+        setNav(false);
+        setActive(false);
     };
-    
+
+    const handleUnknownClick = () => {
+        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener noreferrer');
+    };
+
+    // Redirect function for submenu items
+    const handleRedirect = (url) => {
+        window.open(url, '_blank', 'noopener noreferrer');
+    };
 
     // Update time every second
     useEffect(() => {
@@ -126,6 +132,14 @@ function Navbar() {
             setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         }, 1000);
         return () => clearInterval(interval);
+    }, []);
+
+    // Update mobile state on window resize
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 940);
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return (
@@ -140,17 +154,21 @@ function Navbar() {
                     Start
                 </button>
             </div>
-            <div className="divider"></div>
-            {/* Social media icons */}
-            <div className="social-icons">
-                <a href="https://github.com/ImNotJ" target="_blank" rel="noopener noreferrer">
-                    <LiaGithubSquare className='icon' style={{ color: 'var(--pink)' }} />
-                </a>
-                <a href="https://www.linkedin.com/in/jaisaravanan/" target="_blank" rel="noopener noreferrer">
-                    <LiaLinkedin className='icon' style={{ color: 'var(--blue)' }} />
-                </a>
-            </div>
-            <div className="divider"></div>
+            {!isMobile && (
+                <>
+                    <div className="divider"></div>
+                    {/* Social media icons */}
+                    <div className="social-icons">
+                        <a href="https://github.com/ImNotJ" target="_blank" rel="noopener noreferrer">
+                            <LiaGithubSquare className='icon' style={{ color: 'var(--pink)' }} />
+                        </a>
+                        <a href="https://www.linkedin.com/in/jaisaravanan/" target="_blank" rel="noopener noreferrer">
+                            <LiaLinkedin className='icon' style={{ color: 'var(--blue)' }} />
+                        </a>
+                    </div>
+                    <div className="divider"></div>
+                </>
+            )}
 
             {/* Paint Modal button */}
             {showPaintModal && (
@@ -176,11 +194,10 @@ function Navbar() {
                 </div>
             )}
 
-
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
-                    <span><strong>jaisara</strong><txt style={{ fontfamily: 'ms1' }}>.org</txt></span>
+                    <span><strong>jaisara</strong><txt style={{ fontFamily: 'ms1' }}>.org</txt></span>
                 </div>
                 <ul className="mobile-nav">
                     <li onClick={handleAboutClick}>
@@ -209,14 +226,15 @@ function Navbar() {
                         <span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon' />
                     </li>
                     <li ref={contactRef} onClick={() => handleSubmenuClick([
-                        { icon: gitI, text: 'Github' },
-                        { icon: linkI, text: 'Linkedin' }], contactRef, {handleNav})}>
+                        { icon: gitI, text: 'Github', url: 'https://github.com/ImNotJ' },
+                        { icon: linkI, text: 'Linkedin', url: 'https://www.linkedin.com/in/jaisaravanan/' }], contactRef)}>
                         <img src={contactI} alt="Contact Icon" className='menu-icon' />
                         <span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li>
+                    <li onClick={handleUnknownClick}>
                         <img src={idkI} alt="Unknown Icon" className='menu-icon' />
-                        ???</li>
+                        ???
+                    </li>
                 </ul>
             </div>
             <div className="clock">
@@ -227,8 +245,7 @@ function Navbar() {
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
             {submenuItems.length > 0 && (
-                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} />
-                
+                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} isMobile={isMobile} onItemClick={handleRedirect} />
             )}
 
         </div>

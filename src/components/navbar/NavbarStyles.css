@@ -65,7 +65,7 @@
 
 /* Container for social media icons */
 .social-icons {
-    display: flex; 
+    display: flex;
 }
 
 /* Styles for individual social media icons */
@@ -79,7 +79,7 @@
 
 /* Hover effect for icons */
 .icon:hover {
-    
+
     transform: scale(1.1);
     transition: 0.3s;
     cursor: pointer;
@@ -100,14 +100,14 @@
     border-right: 3px solid var(--black);
     cursor: pointer;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
-    
+
     font-size: 20px;
     font-weight: bold;
     background-color: var(--lightgray);
     display: flex;
     justify-items: center;
     width: 40%;
-    
+
 }
 
 
@@ -119,7 +119,7 @@
     margin-bottom: -24px;
     margin-left: -24px;
     margin-right: -14px;
-    
+
 }
 
 /* Styles for the active or clicked state of the start button */
@@ -169,7 +169,7 @@
     padding-top: 15px;
     padding-left: 2.5px;
     padding-right: 2.5px;
-    border-right: 0; 
+    border-right: 0;
     rotate: 180deg;
 }
 
@@ -225,7 +225,7 @@
 .menu-icon {
     scale: 10%;
     margin: -500px;
-    position: absolute; 
+    position: absolute;
     left: 293px;
 }
 
@@ -265,5 +265,5 @@
         display: none;
     }
 
-    
+
 }
