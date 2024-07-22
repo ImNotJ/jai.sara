@@ -41,6 +41,8 @@ function Navbar() {
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
     // const [showSubmenu, setShowSubmenu] = useState(false);
+    const [activeSubmenu, setActiveSubmenu] = useState(null); // Manages the currently active submenu
+
 
     const audioRef = useRef(null); // Reference to the audio element
     const csRef = useRef(null);
@@ -96,12 +98,19 @@ function Navbar() {
     };
 
     const handleSubmenuClick = (items, ref) => {
-        if (ref.current) {
-            const rect = ref.current.getBoundingClientRect();
-            setSubmenuPosition({ top: rect.top, left: rect.left });
+        if (activeSubmenu === true) {
+            // If the same submenu is clicked, close it
+            setActiveSubmenu(false);
+            setSubmenuItems([]);
+        } else {
+            // Otherwise, open the new submenu
+            if (ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                setSubmenuPosition({ top: rect.top, left: rect.left });
+            }
+            setSubmenuItems(items);
+            setActiveSubmenu(true);
         }
-        setSubmenuItems(items);
-        
     };
 
     const handleCloseSubmenu = () => {

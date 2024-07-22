@@ -79,7 +79,8 @@
 
 /* Hover effect for icons */
 .icon:hover {
-    transform: scale(1.2);
+    
+    transform: scale(1.1);
     transition: 0.3s;
     cursor: pointer;
 }
@@ -242,4 +243,27 @@
     background-color: var(--lightgray);
     margin-left: auto;
     margin-right: 7px;
+}
+
+@media (max-width: 940px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        bottom: unset;
+    }
+
+    .clock {
+        display: none;
+    }
+
+    .mobile-menu {
+        bottom: unset;
+        top: 60px;
+    }
+
+    .amodal-button {
+        display: none;
+    }
+
+    
 }
