@@ -100,3 +100,14 @@
     font-size: 28px;
     font-weight: bold;
 }
+
+@media (max-width: 940px) {
+    .pmodal-overlay {
+        position: fixed;
+        top: 70px;
+        left: 610px;
+        bottom: unset;
+    }
+
+
+}

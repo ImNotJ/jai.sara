@@ -5,6 +5,15 @@ import headshot from './assets/headshot.jpg';
 
 const PaintModal = ({ show, onClose }) => {
     const [showModal, setShowModal] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 940);
+
+    // Update the state based on window resize
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 940);
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         if (show) {
@@ -24,6 +33,12 @@ const PaintModal = ({ show, onClose }) => {
         return null;
     }
 
+
+    
+    const pModalStyles = isMobile
+    ? { scale: '30%', position: 'absolute', bottom: '190px', right: '640px' }
+    : { scale: '50%', position: 'absolute', bottom: '120px', right: '570px' };
+
     return (
         // Overlay for the modal
         <div className="pmodal-overlay">
@@ -37,7 +52,7 @@ const PaintModal = ({ show, onClose }) => {
                 <img src={paintImage} alt="Paint" className="pnotepad-image" />
                 {/* About text container with headshot */}
                 <div className="pabout-text">
-                    <img src={headshot} alt="Headshot" style={{ scale: '50%', position: 'absolute', bottom: '120px', right: '570px', }} />
+                    <img src={headshot} alt="Headshot" style={ pModalStyles } />
                 </div>
             </div>
         </div>
