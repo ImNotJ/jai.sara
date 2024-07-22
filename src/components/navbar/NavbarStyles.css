@@ -188,7 +188,7 @@
     font-size: 20px;
     padding-left: 47px;
     cursor: pointer;
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: space-between;
     font-weight: bold;

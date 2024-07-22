@@ -154,7 +154,7 @@ function Navbar() {
                     Start
                 </button>
             </div>
-            {!isMobile && (
+            {((!isMobile) || (isMobile && !nav)) && (
                 <>
                     <div className="divider"></div>
                     {/* Social media icons */}
