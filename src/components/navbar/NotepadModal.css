@@ -109,3 +109,19 @@
     font-size: 28px;
     font-weight: bold;
 }
+
+@media (max-width: 940px) {
+    .modal-overlay {
+        position: fixed;
+        top: 400px;
+        left: 210px;
+        bottom: unset;
+        margin-left: 180px;
+    }
+
+    .about-text {
+        font-size: 18px;
+        width: 85%;
+        
+    }
+}

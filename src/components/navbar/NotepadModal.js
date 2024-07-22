@@ -2,8 +2,18 @@ import React, { useEffect, useState } from 'react';
 import './NotepadModal.css';
 import notepadImage from './assets/notepad.png';
 
+
 const NotepadModal = ({ show, onClose }) => {
     const [showModal, setShowModal] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 940);
+
+    // Update the state based on window resize
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 940);
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         if (show) {
@@ -36,12 +46,30 @@ const NotepadModal = ({ show, onClose }) => {
                 <img src={notepadImage} alt="Notepad" className="notepad-image" />
                 {/* About text container */}
                 <div className="about-text">
-                    <p>
-                        Student at North Carolina State University (NCSU) pursuing a dual degree <br></br>in Computer Science and Economics.
-                        I have a proven track record of <br></br>leading small teams and delivering impactful software development projects <br></br>across various domains.
-                        My experience spans AI development, data engineering, <br></br>and research internships where I have honed my skills in programming, <br></br>data analysis, and problem-solving.
-                        Passionate about learning new technologies <br></br>and continuously improving my technical expertise.<span className="special-font">|</span>
-                    </p>
+                    {isMobile ? (
+                        <p>
+                            Student at North Carolina State University (NCSU)<br></br>
+                            pursuing a dual degree in Computer Science and<br></br>
+                            Economics. I have a proven track record of leading <br></br>
+                            small teams and delivering impactful software <br></br>
+                            development projects across various domains.<br></br>
+                            My experience spans AI development, data <br></br>
+                            engineering, and research internships where I<br></br>
+                            have honed my skills in programming, data<br></br>
+                            analysis, and problem-solving. Passionate about<br></br>
+                            learning new technologies and continuously<br></br>
+                            improving my technical expertise.<span className="special-font">|</span>
+                        </p>
+                    ) : (
+                        <p>
+                            Student at North Carolina State University (NCSU) pursuing a dual degree <br></br>
+                            in Computer Science and Economics. I have a proven track record of <br></br>
+                            leading small teams and delivering impactful software development projects <br></br>
+                            across various domains. My experience spans AI development, data engineering, <br></br>
+                            and research internships where I have honed my skills in programming, <br></br>
+                            data analysis, and problem-solving. Passionate about learning new technologies <br></br>
+                            and continuously improving my technical expertise.<span className="special-font">|</span>
+                        </p>)}
                 </div>
             </div>
         </div>
