@@ -22,17 +22,17 @@ function Submenu({ items, position, onClose, onItemClick }) {
         margin: 0,
     };
 
-    const submenuNavItemStyles = {
-        fontFamily: 'ms1, MS Sans Serif, sans-serif',
-        padding: '7px 7px 7px 45px',
-        fontSize: '20px',
-        cursor: 'pointer',
-        fontWeight: 'bold',
-        color: 'var(--black)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    };
+    // const submenuNavItemStyles = {
+    //     fontFamily: 'ms1, MS Sans Serif, sans-serif',
+    //     padding: '7px 7px 7px 45px',
+    //     fontSize: '20px',
+    //     cursor: 'pointer',
+    //     fontWeight: 'bold',
+    //     color: 'var(--black)',
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'space-between',
+    // };
 
     const submenuIconStyles = {
         scale: '10%',
@@ -46,7 +46,7 @@ function Submenu({ items, position, onClose, onItemClick }) {
         <div className="submenu" style={submenuStyles}>
             <ul className="submenu-nav" style={submenuNavStyles}>
                 {items.map((item, index) => (
-                    <li key={index} onClick={() => item.url ? onItemClick(item.url) : onClose} style={submenuNavItemStyles}>
+                    <li  key={index} onClick={() => item.url ? onItemClick(item.url) : onClose} className="submenu-nav li">
                         <img src={item.icon} alt={item.text} className="submenu-icon" style={submenuIconStyles} />
                         <span>{item.text}</span>
                     </li>
