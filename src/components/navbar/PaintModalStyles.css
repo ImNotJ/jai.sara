@@ -1,0 +1,113 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.93);
+        filter: hue-rotate(180deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.93);
+        filter: hue-rotate(180deg);
+    }
+}
+
+/* Overlay for the modal, fixed position to cover the screen */
+.pmodal-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 150px;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container for the modal content, centered inside the overlay */
+.pmodal-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.pmodal-content.show {
+    animation-name: fadeIn;
+}
+
+.pmodal-content.hide {
+    animation-name: fadeOut;
+}
+
+/* Styles for the paint image inside the modal */
+.pnotepad-image {
+    width: 1200px;
+    height: auto;
+    z-index: 1001;
+}
+
+/* Styles for the about text inside the modal */
+.pabout-text {
+    position: absolute;
+    top: 80px;
+    left: 113px;
+    width: 88.7%;
+    height: 73.7%;
+    color: #303030;
+    background-color: var(--white);
+    font-family: 'ms2', 'MS Sans Serif', sans-serif;
+    font-size: 18px;
+    z-index: 1002;
+}
+
+/* Close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    font-size: 24px;
+    outline: none;
+    z-index: 2000;
+}
+
+.close-button:hover {
+    color: var(--red);
+    /* Change color on hover */
+}
+
+.close-button span {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+@media (max-width: 940px) {
+    .pmodal-overlay {
+        position: fixed;
+        top: 70px;
+        left: 610px;
+        bottom: unset;
+    }
+
+
+}
