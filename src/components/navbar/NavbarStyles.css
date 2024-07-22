@@ -1,3 +1,4 @@
+/* Styles for the navbar */
 .navbar {
     width: 100%;
     height: 60px;
@@ -8,19 +9,24 @@
     border-left: 5px solid var(--white);
     border-right: 5px solid var(--black);
     border-bottom: 5px solid var(--black);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     color: #fff;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
     cursor: auto;
+    z-index: 2000;
+    margin-top: -2px;
+    margin-bottom: -2px;
 }
 
+/* Container for the start button */
 .start-button {
-    margin-left: 5px;
+    margin-left: 7px;
 }
 
+/* Styles for the start button */
 .start-button button {
-    padding: 5px 10px;
+    padding: 3.5px 10px;
     border-top: 3px solid var(--white);
     border-left: 3px solid var(--white);
     border-bottom: 3px solid var(--black);
@@ -29,11 +35,12 @@
     font-family: 'ms2', 'MS Sans Serif', sans-serif;
     letter-spacing: .05rem;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: bolder;
     margin-right: 3px;
     background-color: var(--lightgray);
 }
 
+/* Styles for the active or clicked state of the start button */
 .start-button button.active,
 .start-button button:active {
     border-top: 3px solid var(--black);
@@ -42,36 +49,90 @@
     border-right: 3px solid var(--white);
 }
 
+/* Divider style */
 .divider {
     width: 8px;
     height: 70%;
     margin: 0 5px;
+    margin-right: -2px;
     border-top: 3px solid var(--white);
     border-left: 3px solid var(--white);
     border-bottom: 3px solid var(--black);
     border-right: 3px solid var(--black);
     background-color: var(--lightgray);
+    margin-right: 1px;
 }
 
+/* Container for social media icons */
 .social-icons {
     display: flex;
-    margin-left: 2px; 
 }
 
+/* Styles for individual social media icons */
 .icon {
     font-size: 3.6rem;
     color: var(--black);
-    margin-left: -8px;
-    margin-right: -2px;
+    margin-left: -2px;
+    margin-right: -4px;
     margin-top: 4px;
 }
 
+/* Hover effect for icons */
 .icon:hover {
-    transform: scale(1.2);
+
+    transform: scale(1.1);
     transition: 0.3s;
     cursor: pointer;
 }
 
+/* Container for the notepad modal button */
+.amodal-button {
+    margin-left: 10px;
+    margin-right: -395px;
+}
+
+/* Styles for the notepad modal button */
+.amodal-button button {
+    padding: 8px 10px;
+    border-top: 3px solid var(--white);
+    border-left: 3px solid var(--white);
+    border-bottom: 3px solid var(--black);
+    border-right: 3px solid var(--black);
+    cursor: pointer;
+    font-family: 'ms1', 'MS Sans Serif', sans-serif;
+
+    font-size: 20px;
+    font-weight: bold;
+    background-color: var(--lightgray);
+    display: flex;
+    justify-items: center;
+    width: 40%;
+
+}
+
+
+.amodal-button button img.note-icon {
+    display: flex;
+    width: 28%;
+    height: 28%;
+    margin-top: -20px;
+    margin-bottom: -24px;
+    margin-left: -24px;
+    margin-right: -14px;
+
+}
+
+/* Styles for the active or clicked state of the start button */
+.amodal-button button.active,
+.amodal-button button:active {
+    border-top: 3px solid var(--black);
+    border-left: 3px solid var(--black);
+    border-bottom: 3px solid var(--white);
+    border-right: 3px solid var(--white);
+    font-weight: bold;
+}
+
+/* Styles for the mobile navigation menu */
 .mobile-menu {
     display: none;
     flex-direction: row;
@@ -88,10 +149,12 @@
     color: var(--black);
 }
 
+/* Styles for the active state of the mobile menu */
 .mobile-menu.active {
     display: flex;
 }
 
+/* Styles for the blue bar on the left side of the mobile menu */
 .blue-bar {
     width: 50px;
     background: linear-gradient(to bottom, #0000ff, var(--blue));
@@ -100,16 +163,17 @@
     justify-content: left;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    font-family: 'ms2', 'MS Sans Serif', sans-serif;
+    font-family: 'ms1', 'MS Sans Serif', sans-serif;
     color: var(--white);
     font-size: 28px;
     padding-top: 15px;
     padding-left: 2.5px;
     padding-right: 2.5px;
-    border-right: 0; 
+    border-right: 0;
     rotate: 180deg;
 }
 
+/* Styles for the navigation list inside the mobile menu */
 .mobile-nav {
     list-style: none;
     padding: 0;
@@ -117,28 +181,32 @@
     width: 100%;
 }
 
+/* Styles for individual navigation items */
 .mobile-nav li {
-    font-family: 'ms2', 'MS Sans Serif', sans-serif;
-    padding: 10px;
+    font-family: 'ms1', 'MS Sans Serif', sans-serif;
+    padding: 15px;
     font-size: 20px;
+    padding-left: 47px;
     cursor: pointer;
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: space-between;
+    font-weight: bold;
 }
 
+/* Hover effect for navigation items */
 .mobile-nav li:hover {
     background-color: var(--blue);
     color: var(--white);
 }
 
+/* Styles for the arrow icon in the navigation items */
 .arrow-icon {
     font-size: 1rem;
     margin-right: -5px;
-    
-   
 }
 
+/* Container for the bottom part of the mobile menu */
 .mobile-menu-bottom {
     display: flex;
     flex-direction: column;
@@ -146,6 +214,7 @@
     padding: 10px;
 }
 
+/* Styles for the buttons in the menu icons */
 .menu-icons button {
     margin: 5px;
     width: 80%;
@@ -153,11 +222,20 @@
     letter-spacing: 0.1em;
 }
 
+.menu-icon {
+    scale: 10%;
+    margin: -500px;
+    position: absolute;
+    left: 293px;
+}
+
+/* Styles for the clock display */
 .clock {
-    font-family: 'ms2', 'MS Sans Serif', sans-serif;
-    font-size: 28px;
+    font-family: 'ms1', 'MS Sans Serif', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
     color: var(--black);
-    padding: 0 10px;
+    padding: 8px 10px;
     border-top: 3px solid var(--white);
     border-left: 3px solid var(--white);
     border-bottom: 3px solid var(--black);
@@ -165,4 +243,27 @@
     background-color: var(--lightgray);
     margin-left: auto;
     margin-right: 7px;
+}
+
+@media (max-width: 940px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        bottom: unset;
+    }
+
+    .clock {
+        display: none;
+    }
+
+    .mobile-menu {
+        bottom: unset;
+        top: 60px;
+    }
+
+    .amodal-button {
+        display: none;
+    }
+
+
 }
