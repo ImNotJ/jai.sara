@@ -214,7 +214,7 @@ function Navbar() {
                         <span><u>A</u>bout</span>
                     </li>
                     <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: cs1, text: 'TBD' },
+                        { icon: cs1, text: 'Personal Website' },
                         { icon: cs2, text: 'TBD' },
                         { icon: cs3, text: 'TBD' }], csRef)}>
                         <img src={csI} alt="CS Projects Icon" className='menu-icon' />

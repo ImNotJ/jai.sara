@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './NotepadModal.css';
-import notepadImage from './assets/notepad.png';
+import notepadImage from './assets/notebook.png';
 
 
 const NotepadModal = ({ show, onClose }) => {
