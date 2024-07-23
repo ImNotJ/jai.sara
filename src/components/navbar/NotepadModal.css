@@ -113,8 +113,8 @@
 @media (max-width: 940px) {
     .modal-overlay {
         position: fixed;
-        top: 400px; 
-        left: 600px; 
+        top: 550px; 
+        left: 450px; 
         right: 0; 
         bottom: 0;
         overflow: visible; /* Allow overflow */
