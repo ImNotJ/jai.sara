@@ -48,16 +48,16 @@ const NotepadModal = ({ show, onClose }) => {
                 <div className="about-text">
                     {isMobile ? (
                         <p>
-                            Student at North Carolina State University (NCSU)<br></br>
-                            pursuing a dual degree in Computer Science and<br></br>
-                            Economics. I have a proven track record of leading <br></br>
-                            small teams and delivering impactful software <br></br>
-                            development projects across various domains.<br></br>
-                            My experience spans AI development, data <br></br>
-                            engineering, and research internships where I<br></br>
-                            have honed my skills in programming, data<br></br>
-                            analysis, and problem-solving. Passionate about<br></br>
-                            learning new technologies and continuously<br></br>
+                            Student at North Carolina State University (NCSU)
+                            pursuing a dual degree in Computer Science and
+                            Economics. I have a proven track record of leading 
+                            small teams and delivering impactful software 
+                            development projects across various domains.
+                            My experience spans AI development, data 
+                            engineering, and research internships where I
+                            have honed my skills in programming, data
+                            analysis, and problem-solving. Passionate about
+                            learning new technologies and continuously
                             improving my technical expertise.<span className="special-font">|</span>
                         </p>
                     ) : (

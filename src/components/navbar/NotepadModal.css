@@ -111,25 +111,20 @@
 }
 
 @media (max-width: 940px) {
-   .modal-overlay {
+    .modal-overlay {
         position: fixed;
-        top: 200px;
-        left: 30px;
-        right: 10px;
-        bottom: 50px;
-        margin: 0;
-    }
-
-    .notepad-image {
-        width: 100%;
-        height: auto;
+        top: 400px; /* Remove specific top value to allow overflow */
+        left: 400px; /* Remove specific left value to allow overflow */
+        right: 0; /* Remove specific right value to allow overflow */
+        bottom: 0; /* Remove specific bottom value to allow overflow */
+        overflow: visible; /* Allow overflow */
     }
 
     .about-text {
-        top: 40px;
-        left: 7px;
-        font-size: 14px;
-        width: 85%;
-        height: 30%;
+        top: 74px;
+        left: 12px;
+        font-size: 18px;
+        width: 43%; 
+        height: auto; 
     }
 }
