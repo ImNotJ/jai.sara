@@ -113,10 +113,10 @@
 @media (max-width: 940px) {
     .modal-overlay {
         position: fixed;
-        top: 400px; /* Remove specific top value to allow overflow */
-        left: 400px; /* Remove specific left value to allow overflow */
-        right: 0; /* Remove specific right value to allow overflow */
-        bottom: 0; /* Remove specific bottom value to allow overflow */
+        top: 400px; 
+        left: 600px; 
+        right: 0; 
+        bottom: 0;
         overflow: visible; /* Allow overflow */
     }
 
@@ -125,6 +125,6 @@
         left: 12px;
         font-size: 18px;
         width: 43%; 
-        height: auto; 
+        height: 30%; 
     }
 }
