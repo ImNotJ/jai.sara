@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd469db1.css",
-    "main.js": "/static/js/main.dc69b49a.js",
+    "main.css": "/static/css/main.09e0b65e.css",
+    "main.js": "/static/js/main.0028de5f.js",
     "static/media/windows98-startup.mp3.mp3": "/static/media/windows98-startup.mp3.b5d8ecac0f410d0d904f.mp3",
     "static/media/headshot.jpg": "/static/media/headshot.0132401e69c7191b183c.jpg",
     "static/media/notebook.png": "/static/media/notebook.5237c0b0a1f9170d4315.png",
@@ -9,11 +9,11 @@
     "static/media/paint.png": "/static/media/paint.9326d37dc7b8a65937b6.png",
     "static/media/ms-sans-serif-1.ttf": "/static/media/ms-sans-serif-1.e5796f55670d68d37241.ttf",
     "index.html": "/index.html",
-    "main.cd469db1.css.map": "/static/css/main.cd469db1.css.map",
-    "main.dc69b49a.js.map": "/static/js/main.dc69b49a.js.map"
+    "main.09e0b65e.css.map": "/static/css/main.09e0b65e.css.map",
+    "main.0028de5f.js.map": "/static/js/main.0028de5f.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd469db1.css",
-    "static/js/main.dc69b49a.js"
+    "static/css/main.09e0b65e.css",
+    "static/js/main.0028de5f.js"
   ]
 }
