@@ -114,7 +114,7 @@
     .modal-overlay {
         position: fixed;
         top: 550px; 
-        left: 450px; 
+        left: 445px; 
         right: 0; 
         bottom: 0;
         overflow: visible; /* Allow overflow */
