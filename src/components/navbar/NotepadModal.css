@@ -115,16 +115,13 @@
         position: fixed;
         top: 550px; 
         left: 445px; 
-        right: 0; 
-        bottom: 0;
-        overflow: visible; /* Allow overflow */
     }
 
     .about-text {
         top: 74px;
         left: 12px;
         font-size: 18px;
-        width: 43%; 
+        width: 40%; 
         height: 50%; 
     }
 }
