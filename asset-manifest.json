@@ -1,19 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.86fe329d.css",
-    "main.js": "/static/js/main.0028de5f.js",
-    "static/media/windows98-startup.mp3.mp3": "/static/media/windows98-startup.mp3.b5d8ecac0f410d0d904f.mp3",
+    "main.css": "/static/css/main.d1e1f780.css",
+    "main.js": "/static/js/main.0e1c6b5a.js",
     "static/media/headshot.jpg": "/static/media/headshot.0132401e69c7191b183c.jpg",
     "static/media/notebook.png": "/static/media/notebook.5237c0b0a1f9170d4315.png",
     "static/media/ms-sans-serif-4.ttf": "/static/media/ms-sans-serif-4.dce2735f7b4ee0ba6f68.ttf",
     "static/media/paint.png": "/static/media/paint.9326d37dc7b8a65937b6.png",
     "static/media/ms-sans-serif-1.ttf": "/static/media/ms-sans-serif-1.e5796f55670d68d37241.ttf",
     "index.html": "/index.html",
-    "main.86fe329d.css.map": "/static/css/main.86fe329d.css.map",
-    "main.0028de5f.js.map": "/static/js/main.0028de5f.js.map"
+    "main.d1e1f780.css.map": "/static/css/main.d1e1f780.css.map",
+    "main.0e1c6b5a.js.map": "/static/js/main.0e1c6b5a.js.map"
   },
   "entrypoints": [
-    "static/css/main.86fe329d.css",
-    "static/js/main.0028de5f.js"
+    "static/css/main.d1e1f780.css",
+    "static/js/main.0e1c6b5a.js"
   ]
 }
