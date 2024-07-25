@@ -6,10 +6,20 @@ import notepadImage from './assets/notebook.png';
 const NotepadModal = ({ show, onClose }) => {
     const [showModal, setShowModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940);
+    const [isSmall, setIsSmall] = useState(window.innerWidth <= 1440 && window.innerWidth > 940);
 
     // Update the state based on window resize
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 940);
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
+    // Update the state based on window resize
+    useEffect(() => {
+        const handleResize = () => setIsSmall(window.innerWidth <= 1440);
         window.addEventListener('resize', handleResize);
 
         return () => window.removeEventListener('resize', handleResize);
@@ -47,6 +57,20 @@ const NotepadModal = ({ show, onClose }) => {
                 {/* About text container */}
                 <div className="about-text">
                     {isMobile ? (
+                        <p>
+                            Student at North Carolina State University (NCSU)
+                            pursuing a dual degree in Computer Science and
+                            Economics. I have a proven track record of leading 
+                            small teams and delivering impactful software 
+                            development projects across various domains.
+                            My experience spans AI development, data 
+                            engineering, and research internships where I
+                            have honed my skills in programming, data
+                            analysis, and problem-solving. Passionate about
+                            learning new technologies and continuously
+                            improving my technical expertise.<span className="special-font">|</span>
+                        </p>
+                    ) : isSmall ? (
                         <p>
                             Student at North Carolina State University (NCSU)
                             pursuing a dual degree in Computer Science and
