@@ -1,61 +1,135 @@
-# Getting Started with Create React App
+# Windows 98 Styled React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React.js application styled to emulate the look and feel of Windows 98. The application includes features such as a Windows 98-style startup sound, a desktop with taskbar, modals for applications like Notepad and Paint, and responsive design for mobile devices.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+To get started with this project, you need to have Node.js and npm installed on your computer. Follow the steps below to set up and run the application locally.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Node.js](https://nodejs.org/) (version 20.x recommended)
+- [npm](https://www.npmjs.com/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+1. Clone the repository to your local machine:
+    ```bash
+    git clone https://github.com/your-username/windows-98-react-app.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd windows-98-react-app
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-Launches the test runner in the interactive watch mode.\
+### Running the Application
+
+To run the application in development mode, use the following command:
+```bash
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload when you make changes.
+
+### Building for Production
+
+To create a production build of the application, use the following command:
+```bash
+npm run build
+```
+This will create an optimized production build in the `build` folder. The build is minified, and the filenames include the hashes. Your app is ready to be deployed.
+
+### Testing
+
+To launch the test runner in interactive watch mode, use the following command:
+```bash
+npm test
+```
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Ejecting
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Note:** This is a one-way operation. Once you `eject`, you can't go back. If you are not satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To eject, run:
+```bash
+npm run eject
+```
+This will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) into your project, giving you full control over them. All the commands except `eject` will still work, but they will point to the copied scripts, so you can tweak them. At this point, you're on your own.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Deployment
 
-### `npm run eject`
+This project includes a CI/CD pipeline for deployment using GitHub Actions. The configuration is in the `.github/workflows` directory.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### GitHub Actions CI/CD Pipeline
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The pipeline is defined in a YAML file as follows:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```yaml
+name: CI/CD
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-## Learn More
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: Install NPM Dependencies
+        run: npm i
+      - name: Build Project
+        run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./build
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
 
-### Code Splitting
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          publish_dir: ./build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Resources
 
-### Analyzing the Bundle Size
+### Icons and Fonts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Icons: [Old Windows Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2098)
+- Screenshots: [Guidebook Gallery](https://guidebookgallery.org/screenshots/win98)
+- Fonts: [MS Sans Serif](https://fontstruct.com/fontstructions/show/2096359/ms-sans-serif-1-1)
 
-### Making a Progressive Web App
+### Learn More
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started). To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Advanced Configuration
 
@@ -65,6 +139,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### Troubleshooting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Feel free to reach out if you have any questions or need further assistance!
