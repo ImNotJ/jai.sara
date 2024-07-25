@@ -26,7 +26,7 @@ import fin3 from './assets/icon12.png';
 import fin2 from './assets/icon11.png';
 import fin1 from './assets/icon6.png';
 
-import startup from './assets/windows98-startup.mp3.mp3';
+// import startup from './assets/windows98-startup.mp3.mp3';
 
 import './NavbarStyles.css';
 
@@ -108,7 +108,8 @@ function Navbar() {
             // Otherwise, open the new submenu
             if (ref.current) {
                 const rect = ref.current.getBoundingClientRect();
-                setSubmenuPosition({ top: rect.top, left: rect.left });
+                const distanceFromBottom = window.innerHeight - rect.bottom;
+                setSubmenuPosition({ top: rect.top, bottom: distanceFromBottom, right: rect.right, left: rect.left });
             }
             setSubmenuItems(items);
             setActiveSubmenu(ref.current);
@@ -154,7 +155,7 @@ function Navbar() {
     return (
         <div className="navbar">
             {/* Audio element for startup sound */}
-            <audio ref={audioRef} src={startup} preload="auto" />
+            {/* <audio ref={audioRef} src={startup} preload="auto" /> */}
             <div className="start-button">
                 {/* Start button */}
                 <button

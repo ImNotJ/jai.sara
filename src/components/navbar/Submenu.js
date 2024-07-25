@@ -13,8 +13,8 @@ function Submenu({ items, position, onClose, onItemClick }) {
     }, []);
 
     const submenuStyles = isMobile
-        ? { top: 370, left: 55, width: '300px' }
-        : { top: position.top - 990, left: position.left + 290, width: '300px' };
+        ? { top: -370, left: 55, width: '300px' }
+        : { position: 'absolute', top: -position.bottom, left: position.left + 290, width: '300px' };
 
     const submenuNavStyles = {
         listStyle: 'none',
