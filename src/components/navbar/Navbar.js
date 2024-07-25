@@ -108,7 +108,8 @@ function Navbar() {
             // Otherwise, open the new submenu
             if (ref.current) {
                 const rect = ref.current.getBoundingClientRect();
-                setSubmenuPosition({ top: rect.top, left: rect.left });
+                const distanceFromBottom = window.innerHeight - rect.bottom;
+                setSubmenuPosition({ top: rect.top, bottom: distanceFromBottom, right: rect.right, left: rect.left });
             }
             setSubmenuItems(items);
             setActiveSubmenu(ref.current);
