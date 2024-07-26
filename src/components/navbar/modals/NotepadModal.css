@@ -1,10 +1,10 @@
+/* Keyframes for fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: scale(0.93);
         filter: hue-rotate(180deg);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
@@ -12,13 +12,13 @@
     }
 }
 
+/* Keyframes for fade-out animation */
 @keyframes fadeOut {
     from {
         opacity: 1;
         transform: scale(1);
         filter: hue-rotate(0deg);
     }
-
     to {
         opacity: 0;
         transform: scale(0.93);
@@ -50,6 +50,7 @@
     animation-fill-mode: forwards;
 }
 
+/* Animation states for the modal content */
 .modal-content.show {
     animation-name: fadeIn;
 }
@@ -101,15 +102,12 @@
     z-index: 2000;
 }
 
+/* Change color of close button on hover */
 .close-button:hover {
     color: var(--red);
 }
 
-.close-button span {
-    font-size: 28px;
-    font-weight: bold;
-}
-
+/* Media query for mobile screens */
 @media (max-width: 940px) {
     .modal-overlay {
         position: fixed;
@@ -126,6 +124,7 @@
     }
 }
 
+/* Media query for small screens */
 @media (min-width: 941px) and (max-width: 1440px) {
     .modal-overlay {
         position: fixed;

@@ -4,8 +4,8 @@ import { LiaGithubSquare, LiaLinkedin } from 'react-icons/lia';
 import { MdPlayArrow } from "react-icons/md";
 
 // Importing modal components and assets
-import NotepadModal from './NotepadModal';
-import PaintModal from './PaintModal';
+import NotepadModal from './modals/NotepadModal';
+import PaintModal from './modals/PaintModal';
 import Submenu from './Submenu';
 import aboutI from './assets/notepad icon.png';
 import csI from './assets/cs icon.png';

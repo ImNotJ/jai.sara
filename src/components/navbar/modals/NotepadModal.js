@@ -1,42 +1,40 @@
+// Import necessary libraries and assets
 import React, { useEffect, useState } from 'react';
 import './NotepadModal.css';
 import notepadImage from './assets/notebook.png';
 
-
 const NotepadModal = ({ show, onClose }) => {
+    // State to track if the modal should be displayed
     const [showModal, setShowModal] = useState(false);
+    // State to track if the viewport is mobile-sized
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940);
+    // State to track if the viewport is small (between mobile and desktop sizes)
     const [isSmall, setIsSmall] = useState(window.innerWidth <= 1440 && window.innerWidth > 940);
 
-    // Update the state based on window resize
+    // Effect to update the mobile state on window resize
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 940);
         window.addEventListener('resize', handleResize);
 
+        // Cleanup event listener on component unmount
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-
-    // Update the state based on window resize
+    // Effect to update the small screen state on window resize
     useEffect(() => {
-        const handleResize = () => setIsSmall(window.innerWidth <= 1440);
+        const handleResize = () => setIsSmall(window.innerWidth <= 1440 && window.innerWidth > 940);
         window.addEventListener('resize', handleResize);
 
+        // Cleanup event listener on component unmount
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Effect to show the modal when the `show` prop changes
     useEffect(() => {
         if (show) {
             setShowModal(true);
         }
     }, [show]);
-
-    // const handleClose = () => {
-    //     setShowModal(false);
-    //     setTimeout(() => {
-    //         onClose();
-    //     }, 500); // Duration of the fade-out animation
-    // };
 
     // Return null if the modal should not be shown
     if (!show && !showModal) {
@@ -49,9 +47,7 @@ const NotepadModal = ({ show, onClose }) => {
             {/* Modal content container */}
             <div className={`modal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Close button */}
-                <button className="close-button" onClick={onClose}>
-
-                </button>
+                <button className="close-button" onClick={onClose}></button>
                 {/* Notepad image */}
                 <img src={notepadImage} alt="Notepad" className="notepad-image" />
                 {/* About text container */}
@@ -93,11 +89,13 @@ const NotepadModal = ({ show, onClose }) => {
                             and research internships where I have honed my skills in programming, <br></br>
                             data analysis, and problem-solving. Passionate about learning new technologies <br></br>
                             and continuously improving my technical expertise.<span className="special-font">|</span>
-                        </p>)}
+                        </p>
+                    )}
                 </div>
             </div>
         </div>
     );
 };
 
+// Export the NotepadModal component as the default export
 export default NotepadModal;
