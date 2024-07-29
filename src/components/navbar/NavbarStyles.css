@@ -116,7 +116,7 @@
     width: 28%;
     height: 28%;
     margin-top: -20px;
-    margin-bottom: -24px;
+    margin-bottom: -20px;
     margin-left: -24px;
     margin-right: -14px;
 
@@ -188,7 +188,7 @@
     font-size: 20px;
     padding-left: 47px;
     cursor: pointer;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
@@ -237,6 +237,8 @@
 
 /* Styles for the clock display */
 .clock {
+    display: flex;
+    align-items: center;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
     font-weight: bold;
     font-size: 20px;
@@ -249,6 +251,21 @@
     background-color: var(--lightgray);
     margin-left: auto;
     margin-right: 7px;
+    padding-left: 50px;
+}
+
+.sound-icon {
+    scale: 12%;
+    margin: -500px;
+    display: flex;
+    position: absolute;
+    padding-left: 360px;
+}
+
+.sound-icon:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 @media (max-width: 940px) {
@@ -258,7 +275,7 @@
         bottom: unset;
     }
 
-    .clock {
+    .social-icons {
         display: none;
     }
 
