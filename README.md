@@ -122,9 +122,10 @@ jobs:
 ## Resources
 
 ### Icons and Fonts
-
-- Icons: [Old Windows Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2098)
-- Screenshots: [Guidebook Gallery](https://guidebookgallery.org/screenshots/win98)
+- Icons:
+  - [Old Windows Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2098)
+  - [React Icons](https://react-icons.github.io/react-icons/)
+- Images: [Guidebook Gallery](https://guidebookgallery.org/screenshots/win98)
 - Fonts: [MS Sans Serif](https://fontstruct.com/fontstructions/show/2096359/ms-sans-serif-1-1)
 
 ### Learn More
