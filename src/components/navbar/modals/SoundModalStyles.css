@@ -33,13 +33,13 @@
     left: 570px;
     right: 0px;
     bottom: 0px;
-    width:450px;
-    height:100px;
+    width: 450px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     scale: 100%;
-    z-index:10000;
+    z-index: 10000;
 }
 
 /* Container for the modal content, centered inside the overlay */
@@ -132,4 +132,67 @@
 /* Change color of play button on hover */
 .sclose-button:hover {
     color: var(--red);
+}
+
+
+/* Media query for mobile screens */
+@media (max-width: 940px) {
+    .smodal-overlay {
+        position: fixed;
+        top: 350px;
+        left: -45px;
+    }
+
+    .snotepad-image {
+        width: 75%;
+        height: auto;
+        z-index: 1001;
+    }
+
+    .close-button {
+        
+        position: absolute;
+        left: 367px;
+        top: 4px;
+    }
+
+    .sclose-button {
+        
+        position: absolute;
+        width: 50px;
+        top: 144px;
+        left: 264px;
+    }
+
+    .play-button {
+        
+        position: absolute;
+        width: 50px;
+        top: 144px;
+        left: 200px;
+    }
+
+}
+
+/* Media query for small screens */
+@media (min-width: 941px) and (max-width: 1440px) {
+    .smodal-overlay {
+        position: fixed;
+        top: 400px;
+        left: 245px;
+    }
+
+    .snotepad-image {
+        width: 450px;
+        height: auto;
+        z-index: 1001;
+    }
+
+    .sabout-text {
+        top: 54px;
+        left: 12px;
+        font-size: 18px;
+        width: 80%;
+        height: 70%;
+    }
 }
