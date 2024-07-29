@@ -6,6 +6,7 @@ import { MdPlayArrow } from "react-icons/md";
 // Importing modal components and assets
 import NotepadModal from './modals/NotepadModal';
 import PaintModal from './modals/PaintModal';
+import SoundModal from './modals/SoundModal';
 import Submenu from './Submenu';
 import aboutI from './assets/notepad icon.png';
 import csI from './assets/cs icon.png';
@@ -25,8 +26,9 @@ import cs1 from './assets/icon8.png';
 import fin3 from './assets/icon12.png';
 import fin2 from './assets/icon11.png';
 import fin1 from './assets/icon6.png';
+import soundI from './assets/soundicon.png';
 
-// import startup from './assets/windows98-startup.mp3.mp3';
+import startup from './assets/windows98-startup.mp3.mp3';
 
 import './NavbarStyles.css';
 
@@ -37,12 +39,14 @@ function Navbar() {
     const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })); // Manages the current time display
     const [showPaintModal, setShowPaintModal] = useState(false);
     const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
+    const [showSoundModal, setShowSoundModal] = useState(true);
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
     const [activeSubmenu, setActiveSubmenu] = useState(null); // Manages the currently active submenu
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940); // Manage mobile state
     const [activeNavItem, setActiveNavItem] = useState(null); // Manage active nav item
+    const [soundActive, setSoundActive] = useState(null); // Manage sound
 
 
 
@@ -67,6 +71,7 @@ function Navbar() {
 
         setTimeout(() => {
             setShowNotepadModal(false);
+            setShowSoundModal(false);
             setTimeout(() => {
                 setShowPaintModal(false);
             }, 500);
@@ -98,6 +103,56 @@ function Navbar() {
         }, 300);
     };
 
+    const handleOpenSoundModal = () => {
+
+        if (nav) {
+            setNav(!nav);
+        } else if (active) {
+            setActive(!active);
+        } else if (showNotepadModal) {
+            setTimeout(() => {
+                setShowNotepadModal(false);
+            }, 300);
+            if (showPaintModal) {
+                setTimeout(() => {
+                    setShowPaintModal(false);
+                }, 600);
+                setTimeout(() => {
+                    setShowSoundModal(!showSoundModal);
+                }, 900);
+            } else {
+                setTimeout(() => {
+                    setShowSoundModal(!showSoundModal);
+                }, 600);
+            }
+
+        } else if (showPaintModal) {
+            setTimeout(() => {
+                setShowPaintModal(false);
+            }, 300);
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 600);
+        } else {
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 300);
+        }
+
+
+    };
+
+    const handleCloseSoundModal = () => {
+        setTimeout(() => {
+            setShowSoundModal(false);
+        }, 300);
+    };
+
+    const handleSound = () => {
+        setSoundActive(true);
+        setShowSoundModal(false);
+    };
+
     const handleSubmenuClick = (items, ref) => {
         if (activeSubmenu === ref.current) {
             // If the same submenu is clicked, close it
@@ -122,7 +177,7 @@ function Navbar() {
         setSubmenuItems([]);
         setNav(false);
         setActive(false);
-        
+
     };
 
     const handleUnknownClick = () => {
@@ -155,7 +210,7 @@ function Navbar() {
     return (
         <div className="navbar">
             {/* Audio element for startup sound */}
-            {/* <audio ref={audioRef} src={startup} preload="auto" /> */}
+            {(soundActive) && <audio ref={audioRef} src={startup} preload="auto" />}
             <div className="start-button">
                 {/* Start button */}
                 <button
@@ -204,6 +259,18 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Sound Modal button */}
+            {showSoundModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseSoundModal}>
+                        <img src={soundI} alt="Sound Icon" className="note-icon" />
+                        Sound - Sound...
+                    </button>
+                </div>
+            )}
+
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
@@ -222,7 +289,7 @@ function Navbar() {
                         <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
                     <li ref={finRef} className={activeNavItem === finRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: fin1, text: 'TBD' },
+                        { icon: fin1, text: 'IB Analyst Portfolio' },
                         { icon: fin2, text: 'TBD' },
                         { icon: fin3, text: 'TBD' }], finRef)}>
                         <img src={finI} alt="Finance Projects Icon" className='menu-icon' />
@@ -247,13 +314,23 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
+
+
             <div className="clock">
+                <img
+                    src={soundI}
+                    alt="Sound"
+                    onClick={handleOpenSoundModal}
+                    className='sound-icon'
+                />
                 {/* Clock display */}
                 {time}
             </div>
+
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
+            <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSound} />
             {submenuItems.length > 0 && (
                 <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} isMobile={isMobile} onItemClick={handleRedirect} />
             )}
