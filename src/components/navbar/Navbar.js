@@ -105,10 +105,13 @@ function Navbar() {
 
     const handleOpenSoundModal = () => {
 
-        if (nav) {
+        if (nav || active) {
             setNav(!nav);
-        } else if (active) {
             setActive(!active);
+            setSubmenuItems([]);
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 300);
         } else if (showNotepadModal) {
             setTimeout(() => {
                 setShowNotepadModal(false);
