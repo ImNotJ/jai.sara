@@ -327,7 +327,7 @@ function Navbar() {
                     className='sound-icon'
                 />
                 {/* Clock display */}
-                {time}
+                <div className="time">{time}</div>
             </div>
 
             {/* Modals */}
