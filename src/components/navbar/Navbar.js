@@ -7,28 +7,37 @@ import { MdPlayArrow } from "react-icons/md";
 import NotepadModal from './modals/NotepadModal';
 import PaintModal from './modals/PaintModal';
 import SoundModal from './modals/SoundModal';
+import TerminalModal from './modals/TerminalModal';
 import Submenu from './Submenu';
-import aboutI from './assets/notepad icon.png';
-import csI from './assets/cs icon.png';
-import finI from './assets/fin icon.png';
-import certI from './assets/certi icon.png';
-import contactI from './assets/contact icon.png';
-import idkI from './assets/idk icon.png';
-import paintI from './assets/paint icon.png';
-import ccpI from './assets/icon7.png';
-import gitI from './assets/icon9.png';
-import linkI from './assets/icon3.png';
-import sapI from './assets/start icon.png';
-import cssaI from './assets/icon13.png';
-import cs3 from './assets/icon2.png';
-import cs2 from './assets/icon4.png';
-import cs1 from './assets/icon8.png';
-import fin3 from './assets/icon12.png';
-import fin2 from './assets/icon11.png';
-import fin1 from './assets/icon6.png';
-import soundI from './assets/soundicon.png';
+import aboutI from './assets/icons/notepad icon.png';
+import csI from './assets/icons/cs icon.png';
+import finI from './assets/icons/fin icon.png';
+import certI from './assets/icons/certi icon.png';
+import contactI from './assets/icons/contact icon.png';
+import idkI from './assets/icons/idk icon.png';
+import paintI from './assets/icons/paint icon.png';
+import ccpI from './assets/icons/icon7.png';
+import gitI from './assets/icons/icon9.png';
+import linkI from './assets/icons/icon3.png';
+import sapI from './assets/icons/start icon.png';
+import cssaI from './assets/icons/icon13.png';
+import cs3 from './assets/icons/icon2.png';
+import cs2 from './assets/icons/icon4.png';
+import cs1 from './assets/icons/icon8.png';
+import fin3 from './assets/icons/icon12.png';
+import fin2 from './assets/icons/icon11.png';
+import fin1 from './assets/icons/icon6.png';
+import soundI from './assets/icons/soundicon.png';
+import terminalI from './assets/icons/terminalI.png';
 
-import startup from './assets/windows98-startup.mp3.mp3';
+import startup from './assets/sounds/windows98-startup.mp3.mp3';
+import close from './assets/sounds/close98.mp3';
+import menu from './assets/sounds/menu98.mp3';
+import open from './assets/sounds/open98.mp3';
+import start from './assets/sounds/start98.mp3';
+import tada from './assets/sounds/tada98.mp3';
+import play from './assets/sounds/play98.mp3';
+import stop from './assets/sounds/stop98.mp3';
 
 import './NavbarStyles.css';
 
@@ -40,6 +49,9 @@ function Navbar() {
     const [showPaintModal, setShowPaintModal] = useState(false);
     const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
     const [showSoundModal, setShowSoundModal] = useState(true);
+    const [showTerminalModal, setShowTerminalModal] = useState(false);
+    const [soundModalClosedOnce, setSoundModalClosedOnce] = useState(false); // Track if sound modal has been closed once
+
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
@@ -58,28 +70,56 @@ function Navbar() {
 
     // Toggle navigation menu and play audio if it hasn't been played yet
     const handleNav = () => {
-        setNav(!nav);
-        setActive(!active);
-        setActiveNavItem(null);
-        setSubmenuItems([]);
-        if (!audioPlayed && audioRef.current) {
-            audioRef.current.play().catch(error => {
-                console.log('Audio playback failed:', error);
-            });
-            setAudioPlayed(true);
-        }
-
-        setTimeout(() => {
-            setShowNotepadModal(false);
-            setShowSoundModal(false);
+        if (!soundModalClosedOnce) {
+            setNav(false);
+            setActive(false);
             setTimeout(() => {
-                setShowPaintModal(false);
-            }, 500);
-        }, 300);
+                setShowSoundModal(false);
+                    setTimeout(() => {
+                        setShowTerminalModal(true);
+                        setSoundModalClosedOnce(true);
+                    }, 600);
+            }, 300);
+        } else {
+            setTimeout(() => {
+                setShowTerminalModal(false);
+            }, 300);
+            setNav(!nav);
+            setActive(!active);
+            setActiveNavItem(null);
+            setSubmenuItems([]);
+            if (!audioPlayed && audioRef.current) {
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+                setAudioPlayed(true);
+            } else if (audioPlayed && soundActive) {
+                audioRef.current.src = start;
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+
+            setTimeout(() => {
+                setShowNotepadModal(false);
+                setShowSoundModal(false);
+                setTimeout(() => {
+                    setShowPaintModal(false);
+                }, 500);
+            }, 300);
+
+        }
     };
 
     // Toggle about modal visibility
     const handleAboutClick = () => {
+        if (soundActive) {
+            audioRef.current.src = open;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setNav(!nav);
         setActive(!active);
         setTimeout(() => {
@@ -92,18 +132,38 @@ function Navbar() {
     };
 
     const handleClosePaintModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setTimeout(() => {
             setShowPaintModal(false);
         }, 300);
     };
 
     const handleCloseNotepadModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setTimeout(() => {
             setShowNotepadModal(false);
         }, 300);
     };
 
     const handleOpenSoundModal = () => {
+        if (soundActive) {
+            audioRef.current.src = open;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
 
         if (nav || active) {
             setNav(!nav);
@@ -136,6 +196,13 @@ function Navbar() {
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
             }, 600);
+        } else if (showTerminalModal) {
+            setTimeout(() => {
+                setShowTerminalModal(false);
+            }, 300);
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 600);
         } else {
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
@@ -146,17 +213,88 @@ function Navbar() {
     };
 
     const handleCloseSoundModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setTimeout(() => {
             setShowSoundModal(false);
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                    setSoundModalClosedOnce(true);
+                }, 600);
+
+            }
         }, 300);
     };
 
-    const handleSound = () => {
+    const handleSoundOn = () => {
+        const playAudio = new Audio(play);
+        playAudio.play().catch(error => {
+            console.log('Audio playback failed:', error);
+        });
+
         setSoundActive(true);
-        setShowSoundModal(false);
+        setTimeout(() => {
+            setShowSoundModal(false);
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setTimeout(() => {
+                        const closeAudio = new Audio(tada);
+                        closeAudio.play().catch(error => {
+                            console.log('Audio playback failed:', error);
+                        });
+                    }, 20000);
+                    setShowTerminalModal(true);
+                }, 600);
+                setSoundModalClosedOnce(true);
+            }
+        }, 300);
+    };
+
+    const handleSoundOff = () => {
+        const closeAudio = new Audio(stop);
+        closeAudio.play().catch(error => {
+            console.log('Audio playback failed:', error);
+        });
+
+        setSoundActive(false);
+        setTimeout(() => {
+            setShowSoundModal(false);
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                }, 600);
+                setSoundModalClosedOnce(true);
+            }
+        }, 300);
+    };
+
+    const handleCloseTerminalModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        setTimeout(() => {
+            setShowTerminalModal(false);
+        }, 300);
     };
 
     const handleSubmenuClick = (items, ref) => {
+        if (soundActive) {
+            audioRef.current.src = menu;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         if (activeSubmenu === ref.current) {
             // If the same submenu is clicked, close it
             setActiveSubmenu(null);
@@ -274,6 +412,18 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Terminal Modal button */}
+            {showTerminalModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseTerminalModal}>
+                        <img src={terminalI} alt="Terminal Icon" className="note-icon" />
+                        New Connectio...
+                    </button>
+                </div>
+            )}
+
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
@@ -327,13 +477,14 @@ function Navbar() {
                     className='sound-icon'
                 />
                 {/* Clock display */}
-                {time}
+                <div className="time">{time}</div>
             </div>
 
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
-            <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSound} />
+            <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
+            <TerminalModal show={showTerminalModal} onClose={handleCloseTerminalModal} />
             {submenuItems.length > 0 && (
                 <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} isMobile={isMobile} onItemClick={handleRedirect} />
             )}

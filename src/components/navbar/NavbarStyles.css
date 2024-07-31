@@ -275,7 +275,19 @@
         bottom: unset;
     }
 
-    .social-icons {
+    .clock {
+        padding: 20px 25px;
+    }
+
+    .sound-icon {
+        scale: 12%;
+        margin: -500px;
+        display: flex;
+        position: absolute;
+        padding-left: 410px;
+    }
+
+    .time {
         display: none;
     }
 
