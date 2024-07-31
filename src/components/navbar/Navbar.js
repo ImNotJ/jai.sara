@@ -7,6 +7,7 @@ import { MdPlayArrow } from "react-icons/md";
 import NotepadModal from './modals/NotepadModal';
 import PaintModal from './modals/PaintModal';
 import SoundModal from './modals/SoundModal';
+import TerminalModal from './modals/TerminalModal';
 import Submenu from './Submenu';
 import aboutI from './assets/icons/notepad icon.png';
 import csI from './assets/icons/cs icon.png';
@@ -47,6 +48,9 @@ function Navbar() {
     const [showPaintModal, setShowPaintModal] = useState(false);
     const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
     const [showSoundModal, setShowSoundModal] = useState(true);
+    const [showTerminalModal, setShowTerminalModal] = useState(false);
+    const [soundModalClosedOnce, setSoundModalClosedOnce] = useState(false); // Track if sound modal has been closed once
+
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
@@ -65,29 +69,45 @@ function Navbar() {
 
     // Toggle navigation menu and play audio if it hasn't been played yet
     const handleNav = () => {
-        setNav(!nav);
-        setActive(!active);
-        setActiveNavItem(null);
-        setSubmenuItems([]);
-        if (!audioPlayed && audioRef.current) {
-            audioRef.current.play().catch(error => {
-                console.log('Audio playback failed:', error);
-            });
-            setAudioPlayed(true);
-        } else if (audioPlayed && soundActive) {
-            audioRef.current.src = start;
-            audioRef.current.play().catch(error => {
-                console.log('Audio playback failed:', error);
-            });
-        }
-
-        setTimeout(() => {
-            setShowNotepadModal(false);
-            setShowSoundModal(false);
+        if (!soundModalClosedOnce) {
+            setNav(false);
+            setActive(false);
             setTimeout(() => {
-                setShowPaintModal(false);
-            }, 500);
-        }, 300);
+                setShowSoundModal(false);
+                    setTimeout(() => {
+                        setShowTerminalModal(true);
+                        setSoundModalClosedOnce(true);
+                    }, 600);
+            }, 300);
+        } else {
+            setTimeout(() => {
+                setShowTerminalModal(false);
+            }, 300);
+            setNav(!nav);
+            setActive(!active);
+            setActiveNavItem(null);
+            setSubmenuItems([]);
+            if (!audioPlayed && audioRef.current) {
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+                setAudioPlayed(true);
+            } else if (audioPlayed && soundActive) {
+                audioRef.current.src = start;
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+
+            setTimeout(() => {
+                setShowNotepadModal(false);
+                setShowSoundModal(false);
+                setTimeout(() => {
+                    setShowPaintModal(false);
+                }, 500);
+            }, 300);
+
+        }
     };
 
     // Toggle about modal visibility
@@ -194,18 +214,37 @@ function Navbar() {
 
         setTimeout(() => {
             setShowSoundModal(false);
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                    setSoundModalClosedOnce(true);
+                }, 600);
+
+            }
         }, 300);
     };
 
     const handleSoundOn = () => {
         const playAudio = new Audio(play);
-    playAudio.play().catch(error => {
-        console.log('Audio playback failed:', error);
-    });
+        playAudio.play().catch(error => {
+            console.log('Audio playback failed:', error);
+        });
 
         setSoundActive(true);
         setTimeout(() => {
             setShowSoundModal(false);
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setTimeout(() => {
+                        const closeAudio = new Audio(tada);
+                        closeAudio.play().catch(error => {
+                            console.log('Audio playback failed:', error);
+                        });
+                    }, 20000);
+                    setShowTerminalModal(true);
+                }, 600);
+                setSoundModalClosedOnce(true);
+            }
         }, 300);
     };
 
@@ -218,6 +257,25 @@ function Navbar() {
         setSoundActive(false);
         setTimeout(() => {
             setShowSoundModal(false);
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                }, 600);
+                setSoundModalClosedOnce(true);
+            }
+        }, 300);
+    };
+
+    const handleCloseTerminalModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        setTimeout(() => {
+            setShowTerminalModal(false);
         }, 300);
     };
 
@@ -406,6 +464,7 @@ function Navbar() {
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
             <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
+            <TerminalModal show={showTerminalModal} onClose={handleCloseTerminalModal} />
             {submenuItems.length > 0 && (
                 <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} isMobile={isMobile} onItemClick={handleRedirect} />
             )}

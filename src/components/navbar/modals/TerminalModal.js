@@ -18,7 +18,7 @@ const TerminalModal = ({ show, onClose }) => {
     }
 
     return (
-        <div className="tmodal-overlay" onClick={onClose}>
+        <div className="tmodal-overlay">
             <div className={`tmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 <button className="close-button" onClick={onClose}></button>
                 <img src={terminal} alt="Terminal" className="tnotepad-image" />
@@ -28,7 +28,6 @@ const TerminalModal = ({ show, onClose }) => {
                             strings: ['Welcome user...', 'Select Start to begin...', 'Enjoy :)'],
                             autoStart: true,
                             cursor: "_",
-                            pauseFor: 1000,
                             loop: true,
                             delay: 200,
                             deleteSpeed: 150,
