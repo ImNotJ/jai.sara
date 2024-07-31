@@ -29,8 +29,9 @@ const TerminalModal = ({ show, onClose }) => {
                             autoStart: true,
                             cursor: "_",
                             loop: true,
-                            delay: 200,
-                            deleteSpeed: 150,
+                            delay: 75,
+                            pauseFor: 2000,
+                            deleteSpeed: 50,
                         }}
                     />
                 </div>

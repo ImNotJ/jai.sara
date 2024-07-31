@@ -28,6 +28,7 @@ import fin3 from './assets/icons/icon12.png';
 import fin2 from './assets/icons/icon11.png';
 import fin1 from './assets/icons/icon6.png';
 import soundI from './assets/icons/soundicon.png';
+import terminalI from './assets/icons/terminalI.png';
 
 import startup from './assets/sounds/windows98-startup.mp3.mp3';
 import close from './assets/sounds/close98.mp3';
@@ -191,6 +192,13 @@ function Navbar() {
         } else if (showPaintModal) {
             setTimeout(() => {
                 setShowPaintModal(false);
+            }, 300);
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 600);
+        } else if (showTerminalModal) {
+            setTimeout(() => {
+                setShowTerminalModal(false);
             }, 300);
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
@@ -400,6 +408,18 @@ function Navbar() {
                         onClick={handleCloseSoundModal}>
                         <img src={soundI} alt="Sound Icon" className="note-icon" />
                         Sound - Sound...
+                    </button>
+                </div>
+            )}
+
+            {/* Terminal Modal button */}
+            {showTerminalModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseTerminalModal}>
+                        <img src={terminalI} alt="Terminal Icon" className="note-icon" />
+                        New Connectio...
                     </button>
                 </div>
             )}
