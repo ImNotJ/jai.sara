@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './SoundModalStyles.css';
 import sound from './assets/sound.png';
 
-const SoundModal = ({ show, onClose, onEnable}) => {
+const SoundModal = ({ show, onClose, onEnable, onDisable }) => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const SoundModal = ({ show, onClose, onEnable}) => {
         <div className="smodal-overlay">
             <div className={`smodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 <button className="close-button" onClick={onClose}></button>
-                <button className="sclose-button" onClick={onClose}></button>
+                <button className="sclose-button" onClick={onDisable}></button>
                 <button className="play-button" onClick={onEnable}></button>
                 <img src={sound} alt="Media Player" className="snotepad-image" />
                 

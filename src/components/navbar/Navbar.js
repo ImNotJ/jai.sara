@@ -34,6 +34,8 @@ import menu from './assets/sounds/menu98.mp3';
 import open from './assets/sounds/open98.mp3';
 import start from './assets/sounds/start98.mp3';
 import tada from './assets/sounds/tada98.mp3';
+import play from './assets/sounds/play98.mp3';
+import stop from './assets/sounds/stop98.mp3';
 
 import './NavbarStyles.css';
 
@@ -72,6 +74,11 @@ function Navbar() {
                 console.log('Audio playback failed:', error);
             });
             setAudioPlayed(true);
+        } else if (audioPlayed && soundActive) {
+            audioRef.current.src = start;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
         }
 
         setTimeout(() => {
@@ -85,6 +92,13 @@ function Navbar() {
 
     // Toggle about modal visibility
     const handleAboutClick = () => {
+        if (soundActive) {
+            audioRef.current.src = open;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setNav(!nav);
         setActive(!active);
         setTimeout(() => {
@@ -97,18 +111,38 @@ function Navbar() {
     };
 
     const handleClosePaintModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setTimeout(() => {
             setShowPaintModal(false);
         }, 300);
     };
 
     const handleCloseNotepadModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setTimeout(() => {
             setShowNotepadModal(false);
         }, 300);
     };
 
     const handleOpenSoundModal = () => {
+        if (soundActive) {
+            audioRef.current.src = open;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
 
         if (nav || active) {
             setNav(!nav);
@@ -151,17 +185,50 @@ function Navbar() {
     };
 
     const handleCloseSoundModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setTimeout(() => {
             setShowSoundModal(false);
         }, 300);
     };
 
-    const handleSound = () => {
+    const handleSoundOn = () => {
+        const playAudio = new Audio(play);
+    playAudio.play().catch(error => {
+        console.log('Audio playback failed:', error);
+    });
+
         setSoundActive(true);
-        setShowSoundModal(false);
+        setTimeout(() => {
+            setShowSoundModal(false);
+        }, 300);
+    };
+
+    const handleSoundOff = () => {
+        const closeAudio = new Audio(stop);
+        closeAudio.play().catch(error => {
+            console.log('Audio playback failed:', error);
+        });
+
+        setSoundActive(false);
+        setTimeout(() => {
+            setShowSoundModal(false);
+        }, 300);
     };
 
     const handleSubmenuClick = (items, ref) => {
+        if (soundActive) {
+            audioRef.current.src = menu;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         if (activeSubmenu === ref.current) {
             // If the same submenu is clicked, close it
             setActiveSubmenu(null);
@@ -338,7 +405,7 @@ function Navbar() {
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
-            <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSound} />
+            <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
             {submenuItems.length > 0 && (
                 <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} isMobile={isMobile} onItemClick={handleRedirect} />
             )}
