@@ -139,7 +139,7 @@
 @media (max-width: 940px) {
     .smodal-overlay {
         position: fixed;
-        top: 350px;
+        top: 320px;
         left: -45px;
     }
 
