@@ -127,6 +127,8 @@ jobs:
   - [React Icons](https://react-icons.github.io/react-icons/)
 - Images: [Guidebook Gallery](https://guidebookgallery.org/screenshots/win98)
 - Fonts: [MS Sans Serif](https://fontstruct.com/fontstructions/show/2096359/ms-sans-serif-1-1)
+- Sound Effects: [Windows 98 Sounds](https://www.youtube.com/watch?v=4-3iMdEQjPU)
+- Typewriter Effect: [NPM Typewriter](https://www.npmjs.com/package/typewriter-effect)
 
 ### Learn More
 
