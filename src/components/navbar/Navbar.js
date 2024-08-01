@@ -248,7 +248,7 @@ function Navbar() {
                         closeAudio.play().catch(error => {
                             console.log('Audio playback failed:', error);
                         });
-                    }, 20000);
+                    }, 10000);
                     setShowTerminalModal(true);
                 }, 600);
                 setSoundModalClosedOnce(true);

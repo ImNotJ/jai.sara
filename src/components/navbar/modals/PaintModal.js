@@ -55,7 +55,7 @@ const PaintModal = ({ show, onClose }) => {
             {/* Modal content container */}
             <div className={`pmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Close button */}
-                <button className="close-button" onClick={onClose}></button>
+                <button className="pclose-button" onClick={onClose}></button>
                 {/* Paint image */}
                 <img src={paintImage} alt="Paint" className="pnotepad-image" />
                 {/* About text container with headshot */}
