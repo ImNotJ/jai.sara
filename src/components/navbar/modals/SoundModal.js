@@ -19,7 +19,7 @@ const SoundModal = ({ show, onClose, onEnable, onDisable }) => {
     return (
         <div className="smodal-overlay">
             <div className={`smodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}></button>
+                <button className="ssclose-button" onClick={onClose}></button>
                 <button className="sclose-button" onClick={onDisable}></button>
                 <button className="play-button" onClick={onEnable}></button>
                 <img src={sound} alt="Media Player" className="snotepad-image" />
