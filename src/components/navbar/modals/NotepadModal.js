@@ -47,7 +47,7 @@ const NotepadModal = ({ show, onClose }) => {
             {/* Modal content container */}
             <div className={`modal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 {/* Close button */}
-                <button className="close-button" onClick={onClose}></button>
+                <button className="nclose-button" onClick={onClose}></button>
                 {/* Notepad image */}
                 <img src={notepadImage} alt="Notepad" className="notepad-image" />
                 {/* About text container */}

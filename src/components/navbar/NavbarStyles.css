@@ -1,3 +1,4 @@
+
 /* Styles for the navbar */
 .navbar {
     width: 100%;
@@ -14,7 +15,7 @@
     color: #fff;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
     cursor: auto;
-    z-index: 2000;
+    z-index: 1000;
     margin-top: -2px;
     margin-bottom: -2px;
 }
@@ -79,7 +80,6 @@
 
 /* Hover effect for icons */
 .icon:hover {
-
     transform: scale(1.1);
     transition: 0.3s;
     cursor: pointer;
@@ -100,16 +100,13 @@
     border-right: 3px solid var(--black);
     cursor: pointer;
     font-family: 'ms1', 'MS Sans Serif', sans-serif;
-
     font-size: 20px;
     font-weight: bold;
     background-color: var(--lightgray);
     display: flex;
     justify-items: center;
     width: 40%;
-
 }
-
 
 .amodal-button button img.note-icon {
     display: flex;
@@ -119,7 +116,6 @@
     margin-bottom: -20px;
     margin-left: -24px;
     margin-right: -14px;
-
 }
 
 /* Styles for the active or clicked state of the start button */
@@ -145,7 +141,7 @@
     border-left: 3px solid var(--white);
     border-bottom: 3px solid var(--black);
     border-right: 3px solid var(--black);
-    z-index: 10;
+    z-index: 20000;
     color: var(--black);
 }
 
@@ -275,6 +271,10 @@
         bottom: unset;
     }
 
+    .mobile-menu.active {
+        z-index: 1000000;
+    }
+
     .clock {
         padding: 20px 25px;
     }
@@ -299,6 +299,4 @@
     .amodal-button {
         display: none;
     }
-
-
 }

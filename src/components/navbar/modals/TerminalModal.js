@@ -20,7 +20,7 @@ const TerminalModal = ({ show, onClose }) => {
     return (
         <div className="tmodal-overlay">
             <div className={`tmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}></button>
+                <button className="tclose-button" onClick={onClose}></button>
                 <img src={terminal} alt="Terminal" className="tnotepad-image" />
                 <div className="typewriter-container">
                     <Typewriter
