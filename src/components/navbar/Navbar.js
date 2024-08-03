@@ -458,7 +458,7 @@ function Navbar() {
                         <span><u>A</u>bout</span>
                     </li>
                     <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: cs1, text: 'Personal Website', title: "Personal Website", tools: "React.js, Node.js, HTML, CSS", body: "idk" },
+                        { icon: cs1, text: 'Personal Website', title: "Windows 98 Styled Personal Website", tools: "React.js, Node.js, HTML, CSS", body: "This personal website is a unique and nostalgic React.js application designed to look and feel like the classic Windows 98 operating system. It features a desktop environment with a taskbar, modals for applications like Notepad and Paint, and is fully responsive for mobile devices. The website also includes a startup sound and other sound effects, adding to the authentic Windows 98 experience. This web application is hosted on www.jaisara.com and deployed using GitHub Pages with a continuous integration and deployment pipeline." },
                         { icon: cs2, text: 'TBD' },
                         { icon: cs3, text: 'TBD' }], csRef)}>
                         <img src={csI} alt="CS Projects Icon" className='menu-icon' />

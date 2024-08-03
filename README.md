@@ -1,6 +1,6 @@
 # Personal Website (Windows 98 Styled React App)
 
-This personal website is a React.js application styled to emulate the look and feel of Windows 98. The application includes features such as a Windows 98-style startup sound (optional), a desktop with taskbar, modals for applications like Notepad and Paint, and responsive design for mobile devices. The web app is hosted on [jaisara](https://www.jaisara.org/) and deployed using Github Pages and a CI/CD pipeline. 
+This personal website is a React.js application styled to emulate the look and feel of Windows 98. The application includes features such as a Windows 98-style startup sound and other sound effects (optional), a desktop with taskbar, modals for applications like Notepad and Paint, and responsive design for mobile devices. The web app is hosted on [jaisara](https://www.jaisara.org/) and deployed using Github Pages and a CI/CD pipeline. 
 
 ## Getting Started
 
