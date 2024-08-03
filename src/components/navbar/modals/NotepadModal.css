@@ -84,6 +84,17 @@
     z-index: 3503;
 }
 
+.title {
+    font-size: 20px;
+    font-family: 'ms2', 'MS Sans Serif', sans-serif;
+    font-weight: bold;
+}
+.tools {
+    font-size: 14px;
+    font-family: 'ms1', 'MS Sans Serif', sans-serif;
+    font-style: italic;
+}
+
 .special-font {
     font-family: 'ms2', 'MS Sans Serif', sans-serif;
     font-weight: bold;

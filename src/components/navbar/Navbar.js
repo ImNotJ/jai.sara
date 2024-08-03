@@ -4,7 +4,7 @@ import { LiaGithubSquare, LiaLinkedin } from 'react-icons/lia';
 import { MdPlayArrow } from "react-icons/md";
 
 // Importing modal components and assets
-import NotepadModal from './modals/NotepadModal';
+import NotepadModal from './modals/NotepadModalArbitrary';
 import PaintModal from './modals/PaintModal';
 import SoundModal from './modals/SoundModal';
 import TerminalModal from './modals/TerminalModal';
@@ -60,7 +60,10 @@ function Navbar() {
     const [activeNavItem, setActiveNavItem] = useState(null); // Manage active nav item
     const [soundActive, setSoundActive] = useState(null); // Manage sound
 
-
+    // State hooks for Notepad content
+    const [notepadTitle, setNotepadTitle] = useState("");
+    const [notepadTools, setNotepadTools] = useState("");
+    const [notepadBody, setNotepadBody] = useState("");
 
     const audioRef = useRef(null); // Reference to the audio element
     const csRef = useRef(null);
@@ -120,6 +123,10 @@ function Navbar() {
                 console.log('Audio playback failed:', error);
             });
         }
+
+        setNotepadTitle("About Me");
+        setNotepadTools("");
+        setNotepadBody("Student at North Carolina State University (NCSU) pursuing a dual degree in Computer Science and Economics. I have a proven track record of leading small teams and delivering impactful software development projects across various domains. My experience spans AI development, data engineering, and research internships where I have honed my skills in programming, data analysis, and problem-solving. Passionate about learning new technologies and continuously improving my technical expertise.");
 
         setNav(!nav);
         setActive(!active);
@@ -485,7 +492,7 @@ function Navbar() {
 
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
-            <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} />
+            <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} title={notepadTitle} tools={notepadTools} body={notepadBody} />
             <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
             <TerminalModal show={showTerminalModal} onClose={handleCloseTerminalModal} />
             {submenuItems.length > 0 && (
