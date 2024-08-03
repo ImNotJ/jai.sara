@@ -331,6 +331,19 @@ function Navbar() {
 
     };
 
+    const handleProjectClick = (title, tools, body) => {
+        setNotepadTitle(title);
+        setNotepadTools(tools);
+        setNotepadBody(body);
+
+        setNav(!nav);
+        setActive(!active);
+        setTimeout(() => {
+            setShowNotepadModal(true);
+        }, 500);
+        setSubmenuItems([]);
+    }
+
     const handleUnknownClick = () => {
         window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener noreferrer');
         setActiveNavItem(null);
@@ -445,7 +458,7 @@ function Navbar() {
                         <span><u>A</u>bout</span>
                     </li>
                     <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: cs1, text: 'Personal Website' },
+                        { icon: cs1, text: 'Personal Website', title: "Personal Website", tools: "React.js, Node.js, HTML, CSS", body: "idk" },
                         { icon: cs2, text: 'TBD' },
                         { icon: cs3, text: 'TBD' }], csRef)}>
                         <img src={csI} alt="CS Projects Icon" className='menu-icon' />
@@ -496,7 +509,7 @@ function Navbar() {
             <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
             <TerminalModal show={showTerminalModal} onClose={handleCloseTerminalModal} />
             {submenuItems.length > 0 && (
-                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} isMobile={isMobile} onItemClick={handleRedirect} />
+                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} onItemClick={handleRedirect} onProjectClick={handleProjectClick}/>
             )}
 
         </div>
