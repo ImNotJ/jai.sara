@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './SubmenuStyles.css';
 
-function Submenu({ items, position, onClose, onItemClick }) {
+function Submenu({ items, position, onClose, onItemClick, onProjectClick}) {
     // State to track if the viewport is mobile-sized
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940);
 
@@ -43,7 +43,7 @@ function Submenu({ items, position, onClose, onItemClick }) {
             <ul className="submenu-nav" style={submenuNavStyles}>
                 {/* Iterate over items to create submenu options */}
                 {items.map((item, index) => (
-                    <li key={index} onClick={() => item.url ? onItemClick(item.url) : onClose()} className="submenu-nav li">
+                    <li key={index} onClick={() => item.url ? onItemClick(item.url) : (item.title ? onProjectClick(item.title, item.tools, item.body) : onClose())} className="submenu-nav li">
                         <img src={item.icon} alt={item.text} className="submenu-icon" style={submenuIconStyles} />
                         <span>{item.text}</span>
                     </li>

@@ -35,7 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9000;
+    z-index: 3400;
     width: 10%;
 }
 
@@ -60,7 +60,7 @@
 .tnotepad-image {
     width: 800px;
     height: auto;
-    z-index: 9001;
+    z-index: 3401;
 }
 
 /* Typewriter container with relative positioning */
@@ -76,7 +76,7 @@
     font-weight: 600;
     font-size: 18px;
     overflow-y: auto;
-    z-index: 9003;
+    z-index: 3403;
 }
 
 /* Close button */
@@ -91,7 +91,7 @@
     color: var(--black);
     font-size: 2px;
     outline: none;
-    z-index: 9004;
+    z-index: 3404;
     padding: 9px;
 }
 
@@ -109,6 +109,7 @@
         padding-right: 0px;
         height: 0px;
     }
+
     
     .typewriter-container {
         position: absolute;
