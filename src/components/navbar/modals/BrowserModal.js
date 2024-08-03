@@ -21,7 +21,7 @@ const BrowserModal = ({ show, link, onClose, onLinkClick }) => {
             <div className={`bmodal-content ${show ? 'show' : 'hide'}`} onClick={e => e.stopPropagation()}>
                 <button className="bclose-button" onClick={onClose}></button>
                 <img src={browser} alt="Browser" className="bnotepad-image" />
-                <button className="link" onClick={onLinkClick}>{link}</button>
+                <button className="link" onClick={() => link && onLinkClick(link)}>{link}</button>
             </div>
         </div>
     );
