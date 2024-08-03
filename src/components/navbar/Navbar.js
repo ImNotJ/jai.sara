@@ -8,6 +8,7 @@ import NotepadModal from './modals/NotepadModalArbitrary';
 import PaintModal from './modals/PaintModal';
 import SoundModal from './modals/SoundModal';
 import TerminalModal from './modals/TerminalModal';
+import BrowserModal from './modals/BrowserModal';
 import Submenu from './Submenu';
 import aboutI from './assets/icons/notepad icon.png';
 import csI from './assets/icons/cs icon.png';
@@ -29,6 +30,7 @@ import fin2 from './assets/icons/icon11.png';
 import fin1 from './assets/icons/icon6.png';
 import soundI from './assets/icons/soundicon.png';
 import terminalI from './assets/icons/terminalI.png';
+import browserI from './assets/icons/browserI.png';
 
 import startup from './assets/sounds/windows98-startup.mp3.mp3';
 import close from './assets/sounds/close98.mp3';
@@ -64,6 +66,11 @@ function Navbar() {
     const [notepadTitle, setNotepadTitle] = useState("");
     const [notepadTools, setNotepadTools] = useState("");
     const [notepadBody, setNotepadBody] = useState("");
+
+    const [showBrowserModal, setShowBrowserModal] = useState(false);;
+    const [projectUrl, setProjectUrl] = useState('');
+
+
 
     const audioRef = useRef(null); // Reference to the audio element
     const csRef = useRef(null);
@@ -109,6 +116,7 @@ function Navbar() {
                 setShowSoundModal(false);
                 setTimeout(() => {
                     setShowPaintModal(false);
+                    setShowBrowserModal(false);
                 }, 500);
             }, 300);
 
@@ -191,6 +199,13 @@ function Navbar() {
                 setTimeout(() => {
                     setShowSoundModal(!showSoundModal);
                 }, 900);
+            } else if (showBrowserModal) {
+                setTimeout(() => {
+                    setShowBrowserModal(false);
+                }, 600);
+                setTimeout(() => {
+                    setShowSoundModal(!showSoundModal);
+                }, 900);
             } else {
                 setTimeout(() => {
                     setShowSoundModal(!showSoundModal);
@@ -211,7 +226,14 @@ function Navbar() {
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
             }, 600);
-        } else {
+        } else if (showBrowserModal) {
+            setTimeout(() => {
+                setShowTerminalModal(false);
+            }, 300);
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 600);
+        }else {
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
             }, 300);
@@ -331,17 +353,41 @@ function Navbar() {
 
     };
 
-    const handleProjectClick = (title, tools, body) => {
+    const handleProjectClick = (title, tools, body, url) => {
+        if (soundActive) {
+            audioRef.current.src = open;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+        
         setNotepadTitle(title);
         setNotepadTools(tools);
         setNotepadBody(body);
+        setProjectUrl(url);
 
         setNav(!nav);
         setActive(!active);
         setTimeout(() => {
-            setShowNotepadModal(true);
+            setShowBrowserModal(true);
+            setTimeout(() => {
+                setShowNotepadModal(true);
+            }, 500);
         }, 500);
         setSubmenuItems([]);
+    }
+
+    const handleCloseBrowserModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        setTimeout(() => {
+            setShowBrowserModal(false);
+        }, 300);
     }
 
     const handleUnknownClick = () => {
@@ -411,6 +457,18 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Browser Modal button */}
+            {showBrowserModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseBrowserModal}>
+                        <img src={browserI} alt="Browser Icon" className="note-icon" />
+                        about:blank...
+                    </button>
+                </div>
+            )}
+
             {/* Notepad Modal button */}
             {showNotepadModal && (
                 <div className="amodal-button">
@@ -418,7 +476,7 @@ function Navbar() {
                         className={active ? 'active' : ''}
                         onClick={handleCloseNotepadModal}>
                         <img src={aboutI} alt="Notepad Icon" className="note-icon" />
-                        General - Notepad
+                        General - Not...
                     </button>
                 </div>
             )}
@@ -430,7 +488,7 @@ function Navbar() {
                         className={active ? 'active' : ''}
                         onClick={handleCloseSoundModal}>
                         <img src={soundI} alt="Sound Icon" className="note-icon" />
-                        Sound - Sound...
+                        Sound - Soun...
                     </button>
                 </div>
             )}
@@ -458,7 +516,7 @@ function Navbar() {
                         <span><u>A</u>bout</span>
                     </li>
                     <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: cs1, text: 'Personal Website', title: "Windows 98 Styled Personal Website", tools: "React.js, Node.js, HTML, CSS", body: "This personal website is a unique and nostalgic React.js application designed to look and feel like the classic Windows 98 operating system. It features a desktop environment with a taskbar, modals for applications like Notepad and Paint, and is fully responsive for mobile devices. The website also includes a startup sound and other sound effects, adding to the authentic Windows 98 experience. This web application is hosted on www.jaisara.com and deployed using GitHub Pages with a continuous integration and deployment pipeline." },
+                        { icon: cs1, text: 'Personal Website', url2: 'https://github.com/ImNotJ/jaisara', title: "Windows 98 Styled Personal Website", tools: "React.js, Node.js, HTML, CSS", body: "This personal website is a unique and nostalgic React.js application designed to look and feel like the classic Windows 98 operating system. It features a desktop environment with a taskbar, modals for applications like Notepad and Paint, and is fully responsive for mobile devices. The website also includes a startup sound and other sound effects, adding to the authentic Windows 98 experience. This web application is hosted on www.jaisara.com and deployed using GitHub Pages with a continuous integration and deployment pipeline." },
                         { icon: cs2, text: 'TBD' },
                         { icon: cs3, text: 'TBD' }], csRef)}>
                         <img src={csI} alt="CS Projects Icon" className='menu-icon' />
@@ -506,6 +564,7 @@ function Navbar() {
             {/* Modals */}
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} title={notepadTitle} tools={notepadTools} body={notepadBody} />
+            <BrowserModal show={showBrowserModal} link={projectUrl} onClose={handleCloseBrowserModal} onLinkClick={handleRedirect}/>
             <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
             <TerminalModal show={showTerminalModal} onClose={handleCloseTerminalModal} />
             {submenuItems.length > 0 && (
