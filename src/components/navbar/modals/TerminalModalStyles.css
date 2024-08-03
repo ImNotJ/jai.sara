@@ -28,7 +28,7 @@
 /* Overlay for the terminal modal, fixed position to cover the screen */
 .tmodal-overlay {
     position: fixed;
-    top: 0;
+    top: 500px;
     left: 720px;
     right: 0;
     bottom: 0;
@@ -37,6 +37,7 @@
     align-items: center;
     z-index: 3400;
     width: 10%;
+    height: 10%;
 }
 
 /* Container for the terminal modal content, centered inside the overlay */
@@ -128,7 +129,7 @@
 @media (min-width: 941px) and (max-width: 1440px) {
     .tmodal-overlay {
         position: fixed;
-        top: 100px;
+        top: 500px;
         left: 545px;
     }
 }
