@@ -75,10 +75,10 @@ function Navbar() {
             setActive(false);
             setTimeout(() => {
                 setShowSoundModal(false);
-                    setTimeout(() => {
-                        setShowTerminalModal(true);
-                        setSoundModalClosedOnce(true);
-                    }, 600);
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                    setSoundModalClosedOnce(true);
+                }, 600);
             }, 300);
         } else {
             setTimeout(() => {
@@ -89,6 +89,7 @@ function Navbar() {
             setActiveNavItem(null);
             setSubmenuItems([]);
             if (!audioPlayed && audioRef.current) {
+                audioRef.current.src = startup;
                 audioRef.current.play().catch(error => {
                     console.log('Audio playback failed:', error);
                 });
@@ -243,12 +244,14 @@ function Navbar() {
             setShowSoundModal(false);
             if (!soundModalClosedOnce) {
                 setTimeout(() => {
-                    setTimeout(() => {
-                        const closeAudio = new Audio(tada);
-                        closeAudio.play().catch(error => {
-                            console.log('Audio playback failed:', error);
-                        });
-                    }, 10000);
+                    if (showTerminalModal) {
+                        setTimeout(() => {
+                            const closeAudio = new Audio(tada);
+                            closeAudio.play().catch(error => {
+                                console.log('Audio playback failed:', error);
+                            });
+                        }, 10000);
+                    }
                     setShowTerminalModal(true);
                 }, 600);
                 setSoundModalClosedOnce(true);
