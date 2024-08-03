@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import './NotepadModal.css';
 import notepadImage from './assets/notebook.png';
 
-const NotepadModal = ({ show, onClose }) => {
+const NotepadModal = ({ show, onClose, title, tools, body }) => {
     // State to track if the modal should be displayed
     const [showModal, setShowModal] = useState(false);
-   
+
 
     // Effect to show the modal when the `show` prop changes
     useEffect(() => {
@@ -32,17 +32,13 @@ const NotepadModal = ({ show, onClose }) => {
                 {/* About text container */}
                 <div className="about-text">
                     <p>
-                        Student at North Carolina State University (NCSU)
-                        pursuing a dual degree in Computer Science and
-                        Economics. I have a proven track record of leading
-                        small teams and delivering impactful software
-                        development projects across various domains.
-                        My experience spans AI development, data
-                        engineering, and research internships where I
-                        have honed my skills in programming, data
-                        analysis, and problem-solving. Passionate about
-                        learning new technologies and continuously
-                        improving my technical expertise.<span className="special-font">|</span>
+                        <span className="title">{title}</span>
+                        <br></br>
+                        <span className="tools">{tools}</span>
+                        <br></br>
+                        <br></br>
+                        <span className="body">{body}</span>
+                        <span className="special-font">|</span>
                     </p>
                 </div>
             </div>
