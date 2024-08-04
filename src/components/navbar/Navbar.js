@@ -2,13 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 // Importing necessary icons from 'react-icons' library
 import { LiaGithubSquare, LiaLinkedin } from 'react-icons/lia';
 import { MdPlayArrow } from "react-icons/md";
+import { csProjectsItems, financeProjectsItems, certificationsItems, contactItems } from './constants';
+
 
 // Importing modal components and assets
 import NotepadModal from './modals/NotepadModalArbitrary';
 import PaintModal from './modals/PaintModal';
 import SoundModal from './modals/SoundModal';
 import TerminalModal from './modals/TerminalModal';
+import BrowserModal from './modals/BrowserModal';
 import Submenu from './Submenu';
+import Folder from './Folder';
 import aboutI from './assets/icons/notepad icon.png';
 import csI from './assets/icons/cs icon.png';
 import finI from './assets/icons/fin icon.png';
@@ -16,19 +20,13 @@ import certI from './assets/icons/certi icon.png';
 import contactI from './assets/icons/contact icon.png';
 import idkI from './assets/icons/idk icon.png';
 import paintI from './assets/icons/paint icon.png';
-import ccpI from './assets/icons/icon7.png';
-import gitI from './assets/icons/icon9.png';
-import linkI from './assets/icons/icon3.png';
-import sapI from './assets/icons/start icon.png';
-import cssaI from './assets/icons/icon13.png';
-import cs3 from './assets/icons/icon2.png';
-import cs2 from './assets/icons/icon4.png';
-import cs1 from './assets/icons/icon8.png';
-import fin3 from './assets/icons/icon12.png';
-import fin2 from './assets/icons/icon11.png';
-import fin1 from './assets/icons/icon6.png';
 import soundI from './assets/icons/soundicon.png';
 import terminalI from './assets/icons/terminalI.png';
+import browserI from './assets/icons/browserI.png';
+import folderI from './assets/icons/folderI.png';
+import folder2I from './assets/icons/folder2I.png';
+import folder3I from './assets/icons/folder4I.png';
+import folder4I from './assets/icons/folder3I.png';
 
 import startup from './assets/sounds/windows98-startup.mp3.mp3';
 import close from './assets/sounds/close98.mp3';
@@ -50,12 +48,15 @@ function Navbar() {
     const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
     const [showSoundModal, setShowSoundModal] = useState(true);
     const [showTerminalModal, setShowTerminalModal] = useState(false);
+    const [showFolder, setShowFolder] = useState(false);
     const [soundModalClosedOnce, setSoundModalClosedOnce] = useState(false); // Track if sound modal has been closed once
 
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
     const [activeSubmenu, setActiveSubmenu] = useState(null); // Manages the currently active submenu
+    const [folderItems, setFolderItems] = useState([]); // Manage folder items
+    const [activeFolder, setActiveFolder] = useState(null); // Manages the currently active folder
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940); // Manage mobile state
     const [activeNavItem, setActiveNavItem] = useState(null); // Manage active nav item
     const [soundActive, setSoundActive] = useState(null); // Manage sound
@@ -65,11 +66,20 @@ function Navbar() {
     const [notepadTools, setNotepadTools] = useState("");
     const [notepadBody, setNotepadBody] = useState("");
 
+    const [showBrowserModal, setShowBrowserModal] = useState(false);;
+    const [projectUrl, setProjectUrl] = useState('');
+
+
+
     const audioRef = useRef(null); // Reference to the audio element
     const csRef = useRef(null);
     const finRef = useRef(null);
     const certRef = useRef(null);
     const contactRef = useRef(null);
+
+    const fcsRef = useRef(null);
+    const ffinRef = useRef(null);
+    const fcertRef = useRef(null);
 
     // Toggle navigation menu and play audio if it hasn't been played yet
     const handleNav = () => {
@@ -107,8 +117,10 @@ function Navbar() {
             setTimeout(() => {
                 setShowNotepadModal(false);
                 setShowSoundModal(false);
+                setShowFolder(false);
                 setTimeout(() => {
                     setShowPaintModal(false);
+                    setShowBrowserModal(false);
                 }, 500);
             }, 300);
 
@@ -191,6 +203,14 @@ function Navbar() {
                 setTimeout(() => {
                     setShowSoundModal(!showSoundModal);
                 }, 900);
+            } else if (showBrowserModal || showFolder) {
+                setTimeout(() => {
+                    setShowBrowserModal(false);
+                    setShowFolder(false);
+                }, 600);
+                setTimeout(() => {
+                    setShowSoundModal(!showSoundModal);
+                }, 900);
             } else {
                 setTimeout(() => {
                     setShowSoundModal(!showSoundModal);
@@ -207,6 +227,14 @@ function Navbar() {
         } else if (showTerminalModal) {
             setTimeout(() => {
                 setShowTerminalModal(false);
+            }, 300);
+            setTimeout(() => {
+                setShowSoundModal(!showSoundModal);
+            }, 600);
+        } else if (showBrowserModal || showFolder) {
+            setTimeout(() => {
+                setShowBrowserModal(false);
+                setShowFolder(false);
             }, 300);
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
@@ -267,6 +295,15 @@ function Navbar() {
     };
 
     const handleSoundOff = () => {
+        if (!soundModalClosedOnce) {
+            setTimeout(() => {
+                setShowSoundModal(false);
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                    setSoundModalClosedOnce(true);
+                }, 600);
+            }, 300);
+        }
         const closeAudio = new Audio(stop);
         closeAudio.play().catch(error => {
             console.log('Audio playback failed:', error);
@@ -296,6 +333,124 @@ function Navbar() {
             setShowTerminalModal(false);
         }, 300);
     };
+
+    const handleFolderClick = (items, ref) => {
+        setNav(false);
+        setActive(false);
+        setSubmenuItems([]);
+
+
+
+        if (activeFolder === ref.current) {
+            if (soundActive) {
+                audioRef.current.src = close;
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+
+            setActiveFolder(null);
+            setTimeout(() => {
+                setShowFolder(false);
+            }, 300);
+
+
+        } else {
+            if (soundActive) {
+                audioRef.current.src = menu;
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setShowSoundModal(false);
+                    setTimeout(() => {
+                        setShowTerminalModal(true);
+                        setSoundModalClosedOnce(true);
+                    }, 600);
+                }, 300);
+            } else {
+                setFolderItems(items);
+                setActiveFolder(ref.current);
+                if (nav || active) {
+                    setNav(!nav);
+                    setActive(!active);
+                    setSubmenuItems([]);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 300);
+                } else if (showNotepadModal) {
+                    setTimeout(() => {
+                        setShowNotepadModal(false);
+                    }, 300);
+                    if (showPaintModal) {
+                        setTimeout(() => {
+                            setShowPaintModal(false);
+                        }, 600);
+                        setTimeout(() => {
+                            setShowFolder(true);
+                        }, 900);
+                    } else if (showBrowserModal || showSoundModal) {
+                        setTimeout(() => {
+                            setShowBrowserModal(false);
+                            setShowSoundModal(false);
+                        }, 600);
+                        setTimeout(() => {
+                            setShowFolder(true);
+                        }, 900);
+                    } else {
+                        setTimeout(() => {
+                            setShowFolder(true);
+                        }, 600);
+                    }
+
+                } else if (showPaintModal) {
+                    setTimeout(() => {
+                        setShowPaintModal(false);
+                    }, 300);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 600);
+                } else if (showTerminalModal) {
+                    setTimeout(() => {
+                        setShowTerminalModal(false);
+                    }, 300);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 600);
+                } else if (showBrowserModal || showSoundModal) {
+                    setTimeout(() => {
+                        setShowBrowserModal(false);
+                        setShowSoundModal(false);
+                    }, 300);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 600);
+                } else {
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 300);
+                }
+            }
+
+
+        }
+    }
+
+    const handleCloseFolder = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        setTimeout(() => {
+            setShowFolder(false);
+        }, 300);
+    }
 
     const handleSubmenuClick = (items, ref) => {
         if (soundActive) {
@@ -331,18 +486,60 @@ function Navbar() {
 
     };
 
-    const handleProjectClick = (title, tools, body) => {
+    const handleProjectClick = (title, tools, body, url) => {
+        if (soundActive) {
+            audioRef.current.src = open;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
         setNotepadTitle(title);
         setNotepadTools(tools);
         setNotepadBody(body);
+        setProjectUrl(url);
 
-        setNav(!nav);
-        setActive(!active);
-        setTimeout(() => {
-            setShowNotepadModal(true);
-        }, 500);
+        setNav(false);
+        setActive(false);
+
+        if (showFolder) {
+            setTimeout(() => {
+                setShowFolder(false);
+                setTimeout(() => {
+                    setShowBrowserModal(true);
+                    setTimeout(() => {
+                        setShowNotepadModal(true);
+                    }, 500);
+                }, 500);
+            }, 300);
+
+        } else {
+            setTimeout(() => {
+                setShowBrowserModal(true);
+                setTimeout(() => {
+                    setShowNotepadModal(true);
+                }, 500);
+            }, 500);
+        }
+
+
         setSubmenuItems([]);
     }
+
+    const handleCloseBrowserModal = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        setTimeout(() => {
+            setShowBrowserModal(false);
+        }, 300);
+    }
+
+
 
     const handleUnknownClick = () => {
         window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener noreferrer');
@@ -411,6 +608,18 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Browser Modal button */}
+            {showBrowserModal && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseBrowserModal}>
+                        <img src={browserI} alt="Browser Icon" className="note-icon" />
+                        about:blank...
+                    </button>
+                </div>
+            )}
+
             {/* Notepad Modal button */}
             {showNotepadModal && (
                 <div className="amodal-button">
@@ -418,7 +627,7 @@ function Navbar() {
                         className={active ? 'active' : ''}
                         onClick={handleCloseNotepadModal}>
                         <img src={aboutI} alt="Notepad Icon" className="note-icon" />
-                        General - Notepad
+                        General - Not...
                     </button>
                 </div>
             )}
@@ -430,7 +639,19 @@ function Navbar() {
                         className={active ? 'active' : ''}
                         onClick={handleCloseSoundModal}>
                         <img src={soundI} alt="Sound Icon" className="note-icon" />
-                        Sound - Sound...
+                        Sound - Soun...
+                    </button>
+                </div>
+            )}
+
+            {/* Folder Modal button */}
+            {showFolder && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseFolder}>
+                        <img src={folder4I} alt="Folder Icon" className="note-icon" />
+                        Control Pane...
                     </button>
                 </div>
             )}
@@ -447,6 +668,24 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Folders */}
+            <div>
+                <ul className="folders">
+                    <li ref={fcsRef} className="folders-li" >
+                        <img src={folder3I} alt="CS Projects Icon" className='folder-menu-icon' onClick={() => handleFolderClick(csProjectsItems, fcsRef)}/>
+                        CS Projects
+                    </li>
+                    <li ref={ffinRef} className="folders-li" >
+                        <img src={folderI} alt="Finance Projects Icon" className='folder-menu-icon' onClick={() => handleFolderClick(financeProjectsItems, ffinRef)}/>
+                        Fin. Projects
+                    </li>
+                    <li ref={fcertRef} className="folders-li" >
+                        <img src={folder2I} alt="Certifications Icon" className='folder-menu-icon' onClick={() => handleFolderClick(certificationsItems, fcertRef)}/>
+                        Certifications
+                    </li>
+                </ul>
+            </div>
+
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
@@ -457,30 +696,19 @@ function Navbar() {
                         <img src={aboutI} alt="About Icon" className='menu-icon' />
                         <span><u>A</u>bout</span>
                     </li>
-                    <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: cs1, text: 'Personal Website', title: "Windows 98 Styled Personal Website", tools: "React.js, Node.js, HTML, CSS", body: "This personal website is a unique and nostalgic React.js application designed to look and feel like the classic Windows 98 operating system. It features a desktop environment with a taskbar, modals for applications like Notepad and Paint, and is fully responsive for mobile devices. The website also includes a startup sound and other sound effects, adding to the authentic Windows 98 experience. This web application is hosted on www.jaisara.com and deployed using GitHub Pages with a continuous integration and deployment pipeline." },
-                        { icon: cs2, text: 'TBD' },
-                        { icon: cs3, text: 'TBD' }], csRef)}>
+                    <li ref={csRef} className={activeNavItem === csRef.current ? 'active' : ''} onClick={() => handleSubmenuClick(csProjectsItems, csRef)}>
                         <img src={csI} alt="CS Projects Icon" className='menu-icon' />
                         <span><u>C</u>S Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={finRef} className={activeNavItem === finRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: fin1, text: 'IB Analyst Portfolio' },
-                        { icon: fin2, text: 'TBD' },
-                        { icon: fin3, text: 'TBD' }], finRef)}>
+                    <li ref={finRef} className={activeNavItem === finRef.current ? 'active' : ''} onClick={() => handleSubmenuClick(financeProjectsItems, finRef)}>
                         <img src={finI} alt="Finance Projects Icon" className='menu-icon' />
                         <span><u>F</u>inance Projects</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={certRef} className={activeNavItem === certRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: ccpI, text: 'AWS Cloud Practitioner' },
-                        { icon: sapI, text: 'TBD' },
-                        { icon: cssaI, text: 'TBD' }], certRef)}>
+                    <li ref={certRef} className={activeNavItem === certRef.current ? 'active' : ''} onClick={() => handleSubmenuClick(certificationsItems, certRef)}>
                         <img src={certI} alt="Certifications Icon" className='menu-icon' />
                         <span><u>C</u>ertifications</span> <MdPlayArrow className='arrow-icon' />
                     </li>
-                    <li ref={contactRef} className={activeNavItem === contactRef.current ? 'active' : ''} onClick={() => handleSubmenuClick([
-                        { icon: gitI, text: 'Github', url: 'https://github.com/ImNotJ' },
-                        { icon: linkI, text: 'Linkedin', url: 'https://www.linkedin.com/in/jaisaravanan/' }], contactRef)}>
+                    <li ref={contactRef} className={activeNavItem === contactRef.current ? 'active' : ''} onClick={() => handleSubmenuClick(contactItems, contactRef)}>
                         <img src={contactI} alt="Contact Icon" className='menu-icon' />
                         <span><u>C</u>ontact</span> <MdPlayArrow className='arrow-icon' />
                     </li>
@@ -490,6 +718,8 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
+
+
 
 
             <div className="clock">
@@ -504,15 +734,29 @@ function Navbar() {
             </div>
 
             {/* Modals */}
+
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} title={notepadTitle} tools={notepadTools} body={notepadBody} />
+            <BrowserModal show={showBrowserModal} link={projectUrl} onClose={handleCloseBrowserModal} onLinkClick={handleRedirect} />
             <SoundModal show={showSoundModal} onClose={handleCloseSoundModal} onEnable={handleSoundOn} onDisable={handleSoundOff} />
             <TerminalModal show={showTerminalModal} onClose={handleCloseTerminalModal} />
             {submenuItems.length > 0 && (
-                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} onItemClick={handleRedirect} onProjectClick={handleProjectClick}/>
+                <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} onItemClick={handleRedirect} onProjectClick={handleProjectClick} />
             )}
 
+            {folderItems.length > 0 && (
+                <Folder show={showFolder} items={folderItems} onClose={handleCloseFolder} onProjectClick={handleProjectClick} />
+            )}
+
+            {/* <Folder title="CS Projects" type="csProjects" />
+            <Folder title="Finance Projects" type="financeProjects" />
+            <Folder title="Certifications" type="certifications" />  */}
+
+
+
+
         </div>
+
     );
 }
 

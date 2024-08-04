@@ -1,10 +1,10 @@
-/* Keyframes for fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: scale(0.93);
         filter: hue-rotate(180deg);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -12,13 +12,13 @@
     }
 }
 
-/* Keyframes for fade-out animation */
 @keyframes fadeOut {
     from {
         opacity: 1;
         transform: scale(1);
         filter: hue-rotate(0deg);
     }
+
     to {
         opacity: 0;
         transform: scale(0.93);
@@ -27,23 +27,26 @@
 }
 
 
-/* Paint modal */
-.pmodal-overlay {
+/* Overlay for the terminal modal, fixed position to cover the screen */
+.fmodal-overlay {
     position: fixed;
-    top: 0px;
-    left: 750px;
-    right: 0px;
-    bottom: 50px;
+    top: -300px;
+    ;
+    left: 720px;
+    right: 0;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    scale: 100%;
-    z-index: 3000;
+    z-index: 3400;
     width: 10%;
 }
 
-.pmodal-content {
-    position: relative;
+/* Container for the terminal modal content, centered inside the overlay */
+.fmodal-content {
+    position: absolute;
+    top: 500px;
+    left: -560px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,35 +54,54 @@
     animation-fill-mode: forwards;
 }
 
-.pmodal-content.show {
+.fmodal-content.show {
     animation-name: fadeIn;
 }
 
-.pmodal-content.hide {
+.fmodal-content.hide {
     animation-name: fadeOut;
 }
 
-.pnotepad-image {
-    width: 1200px;
+.fnotepad-image {
+    width: 800px;
     height: auto;
-    z-index: 3001;
+    z-index: 3401;
 }
 
-.pabout-text {
+.folder-items {
     position: absolute;
-    top: 80px;
-    left: 113px;
-    width: 88.7%;
-    height: 73.7%;
-    color: #303030;
-    background-color: var(--white);
-    font-family: 'ms2', 'MS Sans Serif', sans-serif;
-    font-size: 18px;
-    z-index: 3002;
+    left: 00px;
+    z-index: 3401;
 }
+
+.folder-lists {
+    position: relative;
+    width: 400px;
+    
+}
+
+.folder-items-img {
+    position: relative;
+    
+    width: 120px;
+}
+
+.folder-items-text {
+    position: relative;
+    top: -40px;
+    left: -20px;
+    color: var(--black);
+    font-size: 18px;
+}
+
+.folder-items-img:hover {
+    cursor: pointer;
+}
+
+
 
 /* Close button */
-.pclose-button {
+.fclose-button {
     position: absolute;
     top: 10px;
     right: 12px;
@@ -90,47 +112,41 @@
     color: var(--black);
     font-size: 2px;
     outline: none;
-    z-index: 3003;
+    z-index: 3404;
     padding: 9px;
 }
 
-.pclose-button:hover {
+/* Change color of close button on hover */
+.fclose-button:hover {
     color: var(--red);
 }
 
+/* Media query for mobile screens */
 @media (max-width: 940px) {
-    .pmodal-overlay {
-        position: fixed;
-        top: 70px;
-        left: 610px;
-        bottom: unset;
+    .fmodal-overlay {
+        display: none;
     }
+
 }
 
+/* Media query for small screens */
 @media (min-width: 941px) and (max-width: 1440px) {
-    .pmodal-overlay {
+    .fmodal-overlay {
         position: fixed;
-        top: 70px;
-        left: 610px;
-        bottom: unset;
+        top: -240px;
+        left: 715px;
     }
 
-    .pnotepad-image {
-        width: 775px;
+
+    .fnotepad-image {
+        width: 600px;
         height: auto;
-        z-index: 3001;
+        z-index: 3401;
     }
 
-    .pabout-text {
+    .folder-items{
         position: absolute;
-        top: 50px;
-        left: 73px;
-        width: 88.7%;
-        height: 73.7%;
-        color: #303030;
-        background-color: var(--white);
-        font-family: 'ms2', 'MS Sans Serif', sans-serif;
-        font-size: 18px;
-        z-index: 3002;
+        top: 150px;
     }
+
 }
