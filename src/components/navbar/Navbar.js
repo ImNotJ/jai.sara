@@ -26,6 +26,7 @@ import browserI from './assets/icons/browserI.png';
 import folderI from './assets/icons/folderI.png';
 import folder2I from './assets/icons/folder2I.png';
 import folder3I from './assets/icons/folder4I.png';
+import folder4I from './assets/icons/folder3I.png';
 
 import startup from './assets/sounds/windows98-startup.mp3.mp3';
 import close from './assets/sounds/close98.mp3';
@@ -76,6 +77,10 @@ function Navbar() {
     const certRef = useRef(null);
     const contactRef = useRef(null);
 
+    const fcsRef = useRef(null);
+    const ffinRef = useRef(null);
+    const fcertRef = useRef(null);
+
     // Toggle navigation menu and play audio if it hasn't been played yet
     const handleNav = () => {
         if (!soundModalClosedOnce) {
@@ -112,10 +117,10 @@ function Navbar() {
             setTimeout(() => {
                 setShowNotepadModal(false);
                 setShowSoundModal(false);
+                setShowFolder(false);
                 setTimeout(() => {
                     setShowPaintModal(false);
                     setShowBrowserModal(false);
-                    setShowFolder(false);
                 }, 500);
             }, 300);
 
@@ -226,9 +231,10 @@ function Navbar() {
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
             }, 600);
-        } else if (showBrowserModal) {
+        } else if (showBrowserModal || showFolder) {
             setTimeout(() => {
-                setShowTerminalModal(false);
+                setShowBrowserModal(false);
+                setShowFolder(false);
             }, 300);
             setTimeout(() => {
                 setShowSoundModal(!showSoundModal);
@@ -289,6 +295,15 @@ function Navbar() {
     };
 
     const handleSoundOff = () => {
+        if (!soundModalClosedOnce) {
+            setTimeout(() => {
+                setShowSoundModal(false);
+                setTimeout(() => {
+                    setShowTerminalModal(true);
+                    setSoundModalClosedOnce(true);
+                }, 600);
+            }, 300);
+        }
         const closeAudio = new Audio(stop);
         closeAudio.play().catch(error => {
             console.log('Audio playback failed:', error);
@@ -324,6 +339,8 @@ function Navbar() {
         setActive(false);
         setSubmenuItems([]);
 
+
+
         if (activeFolder === ref.current) {
             if (soundActive) {
                 audioRef.current.src = close;
@@ -345,11 +362,80 @@ function Navbar() {
                     console.log('Audio playback failed:', error);
                 });
             }
-            setFolderItems(items);
-            setActiveFolder(ref.current);
-            setTimeout(() => {
-                setShowFolder(true);
-            }, 300);
+
+            if (!soundModalClosedOnce) {
+                setTimeout(() => {
+                    setShowSoundModal(false);
+                    setTimeout(() => {
+                        setShowTerminalModal(true);
+                        setSoundModalClosedOnce(true);
+                    }, 600);
+                }, 300);
+            } else {
+                setFolderItems(items);
+                setActiveFolder(ref.current);
+                if (nav || active) {
+                    setNav(!nav);
+                    setActive(!active);
+                    setSubmenuItems([]);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 300);
+                } else if (showNotepadModal) {
+                    setTimeout(() => {
+                        setShowNotepadModal(false);
+                    }, 300);
+                    if (showPaintModal) {
+                        setTimeout(() => {
+                            setShowPaintModal(false);
+                        }, 600);
+                        setTimeout(() => {
+                            setShowFolder(true);
+                        }, 900);
+                    } else if (showBrowserModal || showSoundModal) {
+                        setTimeout(() => {
+                            setShowBrowserModal(false);
+                            setShowSoundModal(false);
+                        }, 600);
+                        setTimeout(() => {
+                            setShowFolder(true);
+                        }, 900);
+                    } else {
+                        setTimeout(() => {
+                            setShowFolder(true);
+                        }, 600);
+                    }
+
+                } else if (showPaintModal) {
+                    setTimeout(() => {
+                        setShowPaintModal(false);
+                    }, 300);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 600);
+                } else if (showTerminalModal) {
+                    setTimeout(() => {
+                        setShowTerminalModal(false);
+                    }, 300);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 600);
+                } else if (showBrowserModal || showSoundModal) {
+                    setTimeout(() => {
+                        setShowBrowserModal(false);
+                        setShowSoundModal(false);
+                    }, 300);
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 600);
+                } else {
+                    setTimeout(() => {
+                        setShowFolder(true);
+                    }, 300);
+                }
+            }
+
+
         }
     }
 
@@ -558,6 +644,18 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Folder Modal button */}
+            {showFolder && (
+                <div className="amodal-button">
+                    <button
+                        className={active ? 'active' : ''}
+                        onClick={handleCloseFolder}>
+                        <img src={folder4I} alt="Folder Icon" className="note-icon" />
+                        Control Pane...
+                    </button>
+                </div>
+            )}
+
             {/* Terminal Modal button */}
             {showTerminalModal && (
                 <div className="amodal-button">
@@ -573,15 +671,15 @@ function Navbar() {
             {/* Folders */}
             <div>
                 <ul className="folders">
-                    <li ref={csRef} className="folders-li" onClick={() => handleFolderClick(csProjectsItems, csRef)}>
+                    <li ref={fcsRef} className="folders-li" onClick={() => handleFolderClick(csProjectsItems, fcsRef)}>
                         <img src={folder3I} alt="CS Projects Icon" className='folder-menu-icon' />
                         CS Projects
                     </li>
-                    <li ref={finRef} className="folders-li" onClick={() => handleFolderClick(financeProjectsItems, finRef)}>
+                    <li ref={ffinRef} className="folders-li" onClick={() => handleFolderClick(financeProjectsItems, ffinRef)}>
                         <img src={folderI} alt="Finance Projects Icon" className='folder-menu-icon' />
                         Fin. Projects
                     </li>
-                    <li ref={certRef} className="folders-li" onClick={() => handleFolderClick(certificationsItems, certRef)}>
+                    <li ref={fcertRef} className="folders-li" onClick={() => handleFolderClick(certificationsItems, fcertRef)}>
                         <img src={folder2I} alt="Certifications Icon" className='folder-menu-icon' />
                         Certifications
                     </li>
