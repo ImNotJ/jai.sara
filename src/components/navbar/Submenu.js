@@ -43,7 +43,7 @@ function Submenu({ items, position, onClose, onItemClick, onProjectClick}) {
             <ul className="submenu-nav" style={submenuNavStyles}>
                 {/* Iterate over items to create submenu options */}
                 {items.map((item, index) => (
-                    <li key={index} onClick={() => item.url ? onItemClick(item.url) : (item.title ? onProjectClick(item.title, item.tools, item.body) : onClose())} className="submenu-nav li">
+                    <li key={index} onClick={() => item.url ? onItemClick(item.url) : (item.title ? onProjectClick(item.title, item.tools, item.body, item.url2) : onClose())} className="submenu-nav li">
                         <img src={item.icon} alt={item.text} className="submenu-icon" style={submenuIconStyles} />
                         <span>{item.text}</span>
                     </li>
