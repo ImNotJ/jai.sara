@@ -12,6 +12,7 @@ import SoundModal from './modals/SoundModal';
 import TerminalModal from './modals/TerminalModal';
 import BrowserModal from './modals/BrowserModal';
 import Submenu from './Submenu';
+import Folder from './Folder';
 import aboutI from './assets/icons/notepad icon.png';
 import csI from './assets/icons/cs icon.png';
 import finI from './assets/icons/fin icon.png';
@@ -22,6 +23,9 @@ import paintI from './assets/icons/paint icon.png';
 import soundI from './assets/icons/soundicon.png';
 import terminalI from './assets/icons/terminalI.png';
 import browserI from './assets/icons/browserI.png';
+import folderI from './assets/icons/folderI.png';
+import folder2I from './assets/icons/folder2I.png';
+import folder3I from './assets/icons/folder4I.png';
 
 import startup from './assets/sounds/windows98-startup.mp3.mp3';
 import close from './assets/sounds/close98.mp3';
@@ -43,12 +47,15 @@ function Navbar() {
     const [showNotepadModal, setShowNotepadModal] = useState(false); // Manages the visibility of the modals
     const [showSoundModal, setShowSoundModal] = useState(true);
     const [showTerminalModal, setShowTerminalModal] = useState(false);
+    const [showFolder, setShowFolder] = useState(false);
     const [soundModalClosedOnce, setSoundModalClosedOnce] = useState(false); // Track if sound modal has been closed once
 
     const [audioPlayed, setAudioPlayed] = useState(false); // Manages whether the audio has been played or not
     const [submenuItems, setSubmenuItems] = useState([]); // Manage submenu items
     const [submenuPosition, setSubmenuPosition] = useState({ top: 0, left: 0 });
     const [activeSubmenu, setActiveSubmenu] = useState(null); // Manages the currently active submenu
+    const [folderItems, setFolderItems] = useState([]); // Manage folder items
+    const [activeFolder, setActiveFolder] = useState(null); // Manages the currently active folder
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 940); // Manage mobile state
     const [activeNavItem, setActiveNavItem] = useState(null); // Manage active nav item
     const [soundActive, setSoundActive] = useState(null); // Manage sound
@@ -108,6 +115,7 @@ function Navbar() {
                 setTimeout(() => {
                     setShowPaintModal(false);
                     setShowBrowserModal(false);
+                    setShowFolder(false);
                 }, 500);
             }, 300);
 
@@ -190,9 +198,10 @@ function Navbar() {
                 setTimeout(() => {
                     setShowSoundModal(!showSoundModal);
                 }, 900);
-            } else if (showBrowserModal) {
+            } else if (showBrowserModal || showFolder) {
                 setTimeout(() => {
                     setShowBrowserModal(false);
+                    setShowFolder(false);
                 }, 600);
                 setTimeout(() => {
                     setShowSoundModal(!showSoundModal);
@@ -310,6 +319,53 @@ function Navbar() {
         }, 300);
     };
 
+    const handleFolderClick = (items, ref) => {
+        setNav(false);
+        setActive(false);
+        setSubmenuItems([]);
+
+        if (activeFolder === ref.current) {
+            if (soundActive) {
+                audioRef.current.src = close;
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+
+            setActiveFolder(null);
+            setTimeout(() => {
+                setShowFolder(false);
+            }, 300);
+
+
+        } else {
+            if (soundActive) {
+                audioRef.current.src = menu;
+                audioRef.current.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+            setFolderItems(items);
+            setActiveFolder(ref.current);
+            setTimeout(() => {
+                setShowFolder(true);
+            }, 300);
+        }
+    }
+
+    const handleCloseFolder = () => {
+        if (soundActive) {
+            audioRef.current.src = close;
+            audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+
+        setTimeout(() => {
+            setShowFolder(false);
+        }, 300);
+    }
+
     const handleSubmenuClick = (items, ref) => {
         if (soundActive) {
             audioRef.current.src = menu;
@@ -357,14 +413,30 @@ function Navbar() {
         setNotepadBody(body);
         setProjectUrl(url);
 
-        setNav(!nav);
-        setActive(!active);
-        setTimeout(() => {
-            setShowBrowserModal(true);
+        setNav(false);
+        setActive(false);
+
+        if (showFolder) {
             setTimeout(() => {
-                setShowNotepadModal(true);
+                setShowFolder(false);
+                setTimeout(() => {
+                    setShowBrowserModal(true);
+                    setTimeout(() => {
+                        setShowNotepadModal(true);
+                    }, 500);
+                }, 500);
+            }, 300);
+
+        } else {
+            setTimeout(() => {
+                setShowBrowserModal(true);
+                setTimeout(() => {
+                    setShowNotepadModal(true);
+                }, 500);
             }, 500);
-        }, 500);
+        }
+
+
         setSubmenuItems([]);
     }
 
@@ -380,6 +452,8 @@ function Navbar() {
             setShowBrowserModal(false);
         }, 300);
     }
+
+
 
     const handleUnknownClick = () => {
         window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener noreferrer');
@@ -496,6 +570,24 @@ function Navbar() {
                 </div>
             )}
 
+            {/* Folders */}
+            <div>
+                <ul className="folders">
+                    <li ref={csRef} className="folders-li" onClick={() => handleFolderClick(csProjectsItems, csRef)}>
+                        <img src={folder3I} alt="CS Projects Icon" className='folder-menu-icon' />
+                        CS Projects
+                    </li>
+                    <li ref={finRef} className="folders-li" onClick={() => handleFolderClick(financeProjectsItems, finRef)}>
+                        <img src={folderI} alt="Finance Projects Icon" className='folder-menu-icon' />
+                        Fin. Projects
+                    </li>
+                    <li ref={certRef} className="folders-li" onClick={() => handleFolderClick(certificationsItems, certRef)}>
+                        <img src={folder2I} alt="Certifications Icon" className='folder-menu-icon' />
+                        Certifications
+                    </li>
+                </ul>
+            </div>
+
             {/* Navigation menu */}
             <div className={nav ? 'mobile-menu active' : 'mobile-menu'}>
                 <div className="blue-bar">
@@ -530,6 +622,8 @@ function Navbar() {
             </div>
 
 
+
+
             <div className="clock">
                 <img
                     src={soundI}
@@ -542,6 +636,7 @@ function Navbar() {
             </div>
 
             {/* Modals */}
+
             <PaintModal show={showPaintModal} onClose={handleClosePaintModal} />
             <NotepadModal show={showNotepadModal} onClose={handleCloseNotepadModal} title={notepadTitle} tools={notepadTools} body={notepadBody} />
             <BrowserModal show={showBrowserModal} link={projectUrl} onClose={handleCloseBrowserModal} onLinkClick={handleRedirect} />
@@ -551,7 +646,19 @@ function Navbar() {
                 <Submenu items={submenuItems} position={submenuPosition} onClose={handleCloseSubmenu} onItemClick={handleRedirect} onProjectClick={handleProjectClick} />
             )}
 
+            {folderItems.length > 0 && (
+                <Folder show={showFolder} items={folderItems} onClose={handleCloseFolder} onProjectClick={handleProjectClick} />
+            )}
+
+            {/* <Folder title="CS Projects" type="csProjects" />
+            <Folder title="Finance Projects" type="financeProjects" />
+            <Folder title="Certifications" type="certifications" />  */}
+
+
+
+
         </div>
+
     );
 }
 
