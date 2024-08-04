@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.dff28ffe.css",
-    "main.js": "/static/js/main.8f8f2636.js",
+    "main.css": "/static/css/main.148b2204.css",
+    "main.js": "/static/js/main.dd76fe85.js",
     "static/media/headshot.jpg": "/static/media/headshot.0132401e69c7191b183c.jpg",
     "static/media/windows98-startup.mp3.mp3": "/static/media/windows98-startup.mp3.62aea7074e7308f90cf0.mp3",
+    "static/media/browser.png": "/static/media/browser.2f43a476802c174ce122.png",
     "static/media/tada98.mp3": "/static/media/tada98.82a1c13b0d43f40e81b3.mp3",
     "static/media/paint.png": "/static/media/paint.59d89d45dbac28eea4c7.png",
     "static/media/stop98.mp3": "/static/media/stop98.dd4a8fcfdd070f381492.mp3",
     "static/media/terminal.png": "/static/media/terminal.90bcf8be072cd4a2b94b.png",
     "static/media/notebook.png": "/static/media/notebook.5237c0b0a1f9170d4315.png",
     "static/media/ms-sans-serif-4.ttf": "/static/media/ms-sans-serif-4.dce2735f7b4ee0ba6f68.ttf",
+    "static/media/folder.png": "/static/media/folder.5b3cdaf38d37d436b692.png",
     "static/media/ms-sans-serif-1.ttf": "/static/media/ms-sans-serif-1.e5796f55670d68d37241.ttf",
     "static/media/menu98.mp3": "/static/media/menu98.815f6c696241e694c115.mp3",
     "static/media/close98.mp3": "/static/media/close98.7636d95014d67ea18fbc.mp3",
@@ -18,11 +20,11 @@
     "static/media/sound.png": "/static/media/sound.ff9eaa64e6aa816c207d.png",
     "static/media/start98.mp3": "/static/media/start98.ea2e0b457b9d2903466a.mp3",
     "index.html": "/index.html",
-    "main.dff28ffe.css.map": "/static/css/main.dff28ffe.css.map",
-    "main.8f8f2636.js.map": "/static/js/main.8f8f2636.js.map"
+    "main.148b2204.css.map": "/static/css/main.148b2204.css.map",
+    "main.dd76fe85.js.map": "/static/js/main.dd76fe85.js.map"
   },
   "entrypoints": [
-    "static/css/main.dff28ffe.css",
-    "static/js/main.8f8f2636.js"
+    "static/css/main.148b2204.css",
+    "static/js/main.dd76fe85.js"
   ]
 }
