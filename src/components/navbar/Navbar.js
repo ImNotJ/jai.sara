@@ -671,16 +671,16 @@ function Navbar() {
             {/* Folders */}
             <div>
                 <ul className="folders">
-                    <li ref={fcsRef} className="folders-li" onClick={() => handleFolderClick(csProjectsItems, fcsRef)}>
-                        <img src={folder3I} alt="CS Projects Icon" className='folder-menu-icon' />
+                    <li ref={fcsRef} className="folders-li" >
+                        <img src={folder3I} alt="CS Projects Icon" className='folder-menu-icon' onClick={() => handleFolderClick(csProjectsItems, fcsRef)}/>
                         CS Projects
                     </li>
-                    <li ref={ffinRef} className="folders-li" onClick={() => handleFolderClick(financeProjectsItems, ffinRef)}>
-                        <img src={folderI} alt="Finance Projects Icon" className='folder-menu-icon' />
+                    <li ref={ffinRef} className="folders-li" >
+                        <img src={folderI} alt="Finance Projects Icon" className='folder-menu-icon' onClick={() => handleFolderClick(financeProjectsItems, ffinRef)}/>
                         Fin. Projects
                     </li>
-                    <li ref={fcertRef} className="folders-li" onClick={() => handleFolderClick(certificationsItems, fcertRef)}>
-                        <img src={folder2I} alt="Certifications Icon" className='folder-menu-icon' />
+                    <li ref={fcertRef} className="folders-li" >
+                        <img src={folder2I} alt="Certifications Icon" className='folder-menu-icon' onClick={() => handleFolderClick(certificationsItems, fcertRef)}/>
                         Certifications
                     </li>
                 </ul>
