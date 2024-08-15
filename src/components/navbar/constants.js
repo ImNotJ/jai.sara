@@ -19,13 +19,26 @@ export const csProjectsItems = [
         tools: 'React.js, Node.js, HTML, CSS',
         body: 'This personal website is a unique and nostalgic React.js application designed to look and feel like the classic Windows 98 operating system. It features a desktop environment with a taskbar, modals for applications like Notepad and Paint, and is fully responsive for mobile devices. The website also includes a startup sound and other sound effects, adding to the authentic Windows 98 experience. This web application is hosted on www.jaisara.com and deployed using GitHub Pages with a continuous integration and deployment pipeline.'
     },
-    { icon: cs2, text: 'TBD' },
+    { 
+        icon: cs2,
+        text: 'Web-Scraping Pipeline',
+        url2: 'https://github.com/ImNotJ/groceries',
+        title: 'Grocery Price Web-Scraping Pipeline',
+        tools: 'Streamlit, Pandas, BeautifulSoup, Requests',
+        body: 'The Grocery Prices Project is a data-driven application that leverages web scraping, data cleaning, and visualization techniques to track and analyze grocery prices from major retailers like Wegmans, Walmart, and Aldi. By automating the data collection process using Python scripts and scheduling regular updates with GitHub Actions, the project ensures up-to-date information is available. The cleaned and processed data is then presented through an interactive Streamlit app, allowing users to explore price trends and comparisons seamlessly. This project showcases the integration of various computer science concepts, including web scraping, data processing, and web application development. The app is deployed at https://grocery-prices.streamlit.app/ deployed using GitHub Actions with a continuous integration and deployment pipeline on the Streamlit Cloud.'
+    },
     { icon: cs3, text: 'TBD' }
 ];
 
 export const financeProjectsItems = [
     { icon: fin1, text: 'IB Analyst Portfolio' },
-    { icon: fin2, text: 'TBD' },
+    { icon: fin2,
+        text: 'Grocery Price Inflation',
+        url2: 'https://github.com/ImNotJ/groceries',
+        title: 'Grocery Price Inflation Dashboard',
+        tools: 'Streamlit, Pandas, BeautifulSoup, Requests',
+        body: 'The Grocery Prices Project provides valuable insights into the pricing trends of common household groceries, aiding in the analysis of inflation and the Consumer Price Index (CPI). By tracking approximately 100 items across Wegmans, Walmart, and Aldi, the project ensures consistency and standardization in price comparisons. The interactive Streamlit app allows users to explore how prices fluctuate over time, offering a practical tool for understanding market dynamics and inflationary pressures. This project highlights the importance of data accuracy and consistency in financial analysis, providing a robust framework for monitoring and analyzing grocery prices. The app is deployed at https://grocery-prices.streamlit.app/ deployed using GitHub Actions with a continuous integration and deployment pipeline on the Streamlit Cloud.'
+    },
     { icon: fin3, text: 'TBD' }
 ];
 
