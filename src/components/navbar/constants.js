@@ -31,7 +31,13 @@ export const csProjectsItems = [
 ];
 
 export const financeProjectsItems = [
-    { icon: fin1, text: 'IB Analyst Portfolio' },
+    { icon: fin1,
+        text: 'IB Analyst Portfolio',
+        url2: 'https://github.com/ImNotJ/ibportfolio',
+        title: 'IB/Finance Analyst Portfolio',
+        tools: 'Excel',
+        body: 'While I have not yet had the opportunity to learn critical financial skills in a professional setting, I have proactively sought to develop my expertise in areas that bridge both finance and technology. By building a 3-statement financial model for Otis, or a DCF model for Nvidia, I hope to reflect my commitment to understanding key financial principles while utilizing technology to gather and analyze data, demonstrating my drive to learn and apply these skills independently. For more practical examples of my work in combining my interests in finance and technology, please see my Grocery Price Inflation project.'
+    },
     { icon: fin2,
         text: 'Grocery Price Inflation',
         url2: 'https://github.com/ImNotJ/groceries',
