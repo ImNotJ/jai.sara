@@ -25,9 +25,14 @@ export const csProjectsItems = [
         url2: 'https://github.com/ImNotJ/groceries',
         title: 'Grocery Price Web-Scraping Pipeline',
         tools: 'Streamlit, Pandas, BeautifulSoup, Requests',
-        body: 'The Grocery Prices Project is a data-driven application that leverages web scraping, data cleaning, and visualization techniques to track and analyze grocery prices from major retailers like Wegmans, Walmart, and Aldi. By automating the data collection process using Python scripts and scheduling regular updates with GitHub Actions, the project ensures up-to-date information is available. The cleaned and processed data is then presented through an interactive Streamlit app, allowing users to explore price trends and comparisons seamlessly. This project showcases the integration of various computer science concepts, including web scraping, data processing, and web application development. The app is deployed at https://grocery-prices.streamlit.app/ using GitHub Actions with a continuous integration and deployment pipeline on the Streamlit Cloud.'
+        body: 'The Grocery Prices Project is a data-driven application that leverages web scraping, data cleaning, and visualization techniques to track and analyze grocery prices from major retailers like Wegmans, Walmart, and Aldi. By automating the data collection process using Python scripts and scheduling regular updates with GitHub Actions, the project ensures up-to-date information is available. The cleaned and processed data is then presented through an interactive Streamlit app, allowing users to explore price trends and comparisons seamlessly. This project showcases the integration of various computer science concepts, including web scraping, data processing, and web application development. The app is hosted at https://grocery-prices.streamlit.app/ using GitHub Actions with a continuous integration and deployment pipeline on the Streamlit Cloud.'
     },
-    { icon: cs3, text: 'TBD' }
+    { icon: cs3, 
+        text: 'Fair Benefits',
+        url2: 'https://github.com/ImNotJ/benefitaid',
+        title: 'Fair Benefits Web Application',
+        tools: 'React.js, Spring Boot, Docker, AWS',
+        body: 'The Fair Benefits web application, hosted at fairbenfits.org, helps users discover their eligibility for state and federal benefits through a series of quizzes. Users can create accounts, log in, and answer quizzes to determine their benefit eligibility. Admins can log in from fairbenefits.org/admin-login using the username admin and password 1234 to manage questions, benefits, and quizzes. The application leverages various AWS servicees, including EC2, S3, ALB, ACM, CloudFront, IAM, VPC, Security Groups, RDS SQL, and Route 53, to ensure scalability, security, and high availability. The frontend is built with React.js and hosted on AWS S3, while the backend is built with Java Spring Boot and hosted on an AWS EC2 instance.'}
 ];
 
 export const financeProjectsItems = [
